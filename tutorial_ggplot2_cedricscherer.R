@@ -26,3 +26,32 @@ chic <- readr::read_csv("https://raw.githubusercontent.com/z3tt/ggplot-courses/m
 View(chic)
 
 tibble::glimpse(chic)
+
+# O pacote ggplot2 -------------------------------------------------------------------------------------------------------------------------
+
+## O ggplot2 é um sistema para criar gráficos declarativamente, baseado na gramática de gráficos.
+## Você promove os dados, chama o ggplot2 para mapear as variáveis no aesthetics, quais primitivas
+## gráficas usar e ele cuida dos detalhes.
+
+## O ggplot é construído de alguns elementos básicos:
+
+## - Data: os dados brutos que você deseja plotar.
+## - Geometries geom_: as formas geométicas que representam os dados (tipo de gráfico).
+## - Aesthetics aes(): estética dos objetos geométricos e estatísticos (variáveis), como posição,
+## cor, tamanho e forma.
+## - Scales scale_: intervalo de dados para plortar nos eixos, transformações de log, raiz quadrada,
+## e valores de fator para cores.
+## - Statistical transformations stat_: resumos estatísticos dos dados, como quantis, médias,
+## somas, intervalos de confiança, erros padrão, etc.
+## - Coordinate system coord_: a transformação usada para mapear coordenadas de dados no plano
+## retângulo.
+## - Facets facet_: arranjo dos dados em uma rede de gráficos.
+## - Visual themes theme(): os padrões visuais gerais de uma plotagem, como plano de fundo, grades, 
+## eixos, tipo de letra padrão, tamanhos e cores.
+
+## O número de elementos pode variar dependendo de como você agrupa eles e de qual a sua pergunta.
+
+# O básico do ggplot2 ----------------------------------------------------------------------------------------------------------------------
+
+
+
