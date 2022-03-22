@@ -37,7 +37,7 @@ tibble::glimpse(chic)
 
 ## - Data: os dados brutos que você deseja plotar.
 ## - Geometries geom_: as formas geométicas que representam os dados (tipo de gráfico).
-## - Aesthetics aes(): estética dos objetos geométricos e estatísticos (variáveis), como posição,
+## - Aesthetics aes(): estética dos objetos geométricos e estatísticos, como posição (variáveis x e y),
 ## cor, tamanho e forma.
 ## - Scales scale_: intervalo de dados para plortar nos eixos, transformações de log, raiz quadrada,
 ## e valores de fator para cores.
@@ -53,5 +53,26 @@ tibble::glimpse(chic)
 
 # O básico do ggplot2 ----------------------------------------------------------------------------------------------------------------------
 
+#library(ggplot2)
+library(tidyverse)
 
+## De acordo com os elementos básicos, o ggplot necessita de três coisas essenciais para formar
+## gráfico: os dados, a estética e a geometria. Sempre começamos chamando a função ggplot(data = dados),
+## que basicamente informa ao ggplot2 os nossos dados. Na maioria dos casos você plota duas variáveis
+## x e y. Essa é a estética posicional e assim nós adicionamos aes(x = var1, y = var2) ao ggplot().
+## Em alguns casos, nós especificamos apenas um variável e outros casos três variáveis.
 
+## Tudo que for relacionado a variável de um conjunto de dados deve estar dentro do aes().
+
+(g <- ggplot(chic, aes(x = date, y = temp))) # Apenas um painel com as variáveis é criado.
+
+## Por nomear o gráfico em um objeto 'g', as próximas camadas do ggplot2 podem ser adicionadas a esse
+## objeto.
+
+g + geom_point() # Gráfico de dispersão
+
+g + geom_line() # Gráfico de linha
+
+## Nós podemos combinar várias camadas no mesmo gráfico do ggplot2
+
+g + geom_line() + geom_point()
