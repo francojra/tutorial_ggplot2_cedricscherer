@@ -185,3 +185,15 @@ ggplot(chic, aes(x = date, y = temp)) +
   labs(x = "Year", y = "Temperature (°F)") +
   theme(axis.text = element_text(color = "dodgerblue", size = 12),
         axis.text.x = element_text(face = "italic"))
+
+# Rotacionando os textos dos eixos ---------------------------------------------------------------------------------------------------------
+
+## Você pode rotacionar os textos dos eixos usando o argumento angle(), juntamente com o 
+## hjust para ajuste horizontal (0 = left, 1 = right) e vjust para ajuste vertical 
+## (0 = top, 1 = bottom).
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(axis.text.x = element_text(angle = 50, vjust = 1, hjust = 1, size = 12))
+
