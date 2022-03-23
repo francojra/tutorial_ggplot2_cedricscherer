@@ -148,3 +148,29 @@ ggplot(chic, aes(x = date, y = temp)) +
 ## Os rótulos t e r se referem a 'top' e 'right', respectivamente. Você também 
 ## pode especificar outras margens como margin(t, r, b, l). Para o eixo x utilizamos
 ## top ou bottom, e para o eixo y utilizamos right ou left.
+
+# Modificando a estética dos títulos dos eixos ---------------------------------------------------------------------------------------------
+
+## Novamente, nós usamos a função theme() par alterar a estética dos títulos no argumento axis.title
+## dos eixos x (axis.title.x) e y (axis.title.y). E dento do argumento element_text
+## nós alteramos as cores, tamanhos e tipo de letra desses títulos.
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(axis.title = element_text(size = 15, color = "firebrick",
+                                  face = "italic"))
+
+## Usando apenas o axis.text podemos alterar os títulos de ambos os eixos x e y ao mesmo tempo.
+## O argumento face pode ser usado como 'bold' para colocar em negrito.
+
+## Nós podemos alterar as propriedades de apenas um dos eixos. 
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(axis.title = element_text(color = "sienna", size = 15, face = "bold"),
+        axis.title.y = element_text(face = "bold.italic"))
+
+## Em axis.title.y nós adicionamos a propriedade de negrito e itálico, acima das
+## propriedades já definidas de cor e tamanho.
