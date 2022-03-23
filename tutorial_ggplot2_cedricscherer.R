@@ -174,3 +174,14 @@ ggplot(chic, aes(x = date, y = temp)) +
 
 ## Em axis.title.y nós adicionamos a propriedade de negrito e itálico, acima das
 ## propriedades já definidas de cor e tamanho.
+
+# Modificando a estética dos textos dos eixos (textos da linha) ----------------------------------------------------------------------------
+
+## Nós podemos usar a função theme() também para modificar os textos (aqui números)
+## escritos nas linhas dos eixos usando o argumento axis.text.
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(axis.text = element_text(color = "dodgerblue", size = 12),
+        axis.text.x = element_text(face = "italic"))
