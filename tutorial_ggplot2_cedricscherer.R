@@ -73,7 +73,7 @@ g + geom_point() # Gráfico de dispersão
 
 g + geom_line() # Gráfico de linha
 
-## Nós podemos combinar várias camadas no mesmo gráfico do ggplot2
+## Nós podemos combinar várias camadas no mesmo gráfico do ggplot2.
 
 g + geom_line() + geom_point()
 
@@ -84,9 +84,9 @@ g + geom_line() + geom_point()
 
 g + geom_point(color = "firebrick", shape = "diamond", size = 2)
 
-## ggplot2 entende cor como color, colour ou col
+## ggplot2 entende cor como color, colour ou col.
 
-## Cada propriedade dentro da função geom_* são chamadas de argumentos
+## Cada propriedade dentro da função geom_* são chamadas de argumentos.
 
 g + geom_point(color = "firebrick", shape = "diamond", size = 2) +
     geom_line(color = "firebrick", linetype = "dotted", size = .3)
@@ -104,3 +104,20 @@ g + geom_point(color = "firebrick")
 ## A função theme() customiza vários elementos particulares do tema, é um comando
 ## essencial para modificar textos dos eixos, retângulos, linhas, etc.
 
+# Trabalhando com eixos --------------------------------------------------------------------------------------------------------------------
+
+## Para modificar os nomes dos eixos, nós utilizamos a função labs() e promovemos um
+## cadeia de caracteres (textos) para cada variável x e y.
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = "Temperature (°F)")
+
+## Nós também podemos adicionar os nomes dos eixos utilizando as funções xlab() e ylab().
+
+## O ggplot2 também permite adicionar superescrito aos títulos dos eixos.
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", 
+       y = expression(paste("Temperature (", degree ~ F, ")"^"(Hey, why should we use metric units?!)")))
