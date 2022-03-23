@@ -121,3 +121,30 @@ ggplot(chic, aes(x = date, y = temp)) +
   geom_point(color = "firebrick") +
   labs(x = "Year", 
        y = expression(paste("Temperature (", degree ~ F, ")"^"(Hey, why should we use metric units?!)")))
+
+# Aumenta o espaço entre os eixos e os títulos do eixos ------------------------------------------------------------------------------------
+
+## Para modificar elementos dos eixos nós utilizamos a função theme(), e dentro dessa função
+## usamos o argumento element_text() para modificar os títulos dos eixos x e y.
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(axis.title.x = element_text(vjust = 0, size = 15),
+        axis.title.y = element_text(vjust = 2, size = 15))
+
+## Os argumentos axis.title de x e y foram usados para modificar os títulos através do
+## element_text, e o vjust foi usado para mudar o espaçamento do tírulo da linha do eixo.
+## Ele se refere a um alinhamento vertical que normalmente varia entre 0 e 1.
+
+## Você também pode modificar a distância alterando as margens do texto.
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(axis.title.x = element_text(margin = margin(t = 17), size = 15),
+        axis.title.y = element_text(margin = margin(r = 17), size = 15))
+
+## Os rótulos t e r se referem a 'top' e 'right', respectivamente. Você também 
+## pode especificar outras margens como margin(t, r, b, l). Para o eixo x utilizamos
+## top ou bottom, e para o eixo y utilizamos right ou left.
