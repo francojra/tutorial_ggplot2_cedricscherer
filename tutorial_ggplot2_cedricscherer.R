@@ -76,3 +76,17 @@ g + geom_line() # Gráfico de linha
 ## Nós podemos combinar várias camadas no mesmo gráfico do ggplot2
 
 g + geom_line() + geom_point()
+
+# Modificando propriedades da geometria ----------------------------------------------------------------------------------------------------
+
+## Dentro da função geom_* você pode acrescentar atributos estéticos de cor, forma e tamanho.
+## Vamos tornar todos os pontos em diamantes com cor fire-red.
+
+g + geom_point(color = "firebrick", shape = "diamond", size = 2)
+
+## ggplot2 entende cor como color, colour ou col
+
+## Cada propriedade dentro da função geom_* são chamadas de argumentos
+
+g + geom_point(color = "firebrick", shape = "diamond", size = 2) +
+    geom_line(color = "firebrick", linetype = "dotted", size = .3)
