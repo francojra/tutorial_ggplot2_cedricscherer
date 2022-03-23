@@ -90,3 +90,17 @@ g + geom_point(color = "firebrick", shape = "diamond", size = 2)
 
 g + geom_point(color = "firebrick", shape = "diamond", size = 2) +
     geom_line(color = "firebrick", linetype = "dotted", size = .3)
+
+# Modificando o tema padrão do ggplot2 -----------------------------------------------------------------------------------------------------
+
+## Para estabelecer um mesmo tema de gráfico para todos os plots produzidos em seguida,
+## podemos utilizar a função theme_set(). Devemos observar se as cores dos pontos
+## fornecem um contraste melhor para visualização no novo tema.
+
+theme_set(theme_bw())
+
+g + geom_point(color = "firebrick")
+
+## A função theme() customiza vários elementos particulares do tema, é um comando
+## essencial para modificar textos dos eixos, retângulos, linhas, etc.
+
