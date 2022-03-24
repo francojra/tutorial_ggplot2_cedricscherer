@@ -247,3 +247,28 @@ ggplot(chic, aes(x = date, y = temp)) +
 ## Você deve ter notado que no primeiro exemplo existe uma espaço vazio na borda
 ## superior do gráfico, enquanto no segundo exemplo os pontos vão além do eixo y.
 
+# Forçando seu plot a apresentar a origem --------------------------------------------------------------------------------------------------
+
+chic_high <- dplyr::filter(chic, temp > 25, o3 > 20)
+
+ggplot(chic_high, aes(x = temp, y = o3)) +
+  geom_point(color = "darkcyan") +
+  labs(x = "Temperature higher than 25°F",
+       y = "Ozone higher than 20 ppb") +
+  expand_limits(x = 0, y = 0)
+
+## Você obterá os mesmos resultados usando coord_cartesian(xlim = c(0, NA), ylim = c(0, NA)).
+
+## Nós podemos forçar literalmente o R a começar do início.
+
+ggplot(chic_high, aes(x = temp, y = o3)) +
+  geom_point(color = "darkcyan") +
+  labs(x = "Temperature higher than 25°F",
+       y = "Ozone higher than 20 ppb") +
+  expand_limits(x = 0, y = 0) +
+  scale_x_continuous(expand = c(0, 0)) +
+  scale_y_continuous(expand = c(0, 0)) +
+  coord_cartesian(clip = "off")
+
+## O clipe argumento = "off" em qualquer sistema de coordenadas, sempre começando por coord_*, 
+## permite fazer o desenho fora da área do painel.
