@@ -270,5 +270,5 @@ ggplot(chic_high, aes(x = temp, y = o3)) +
   scale_y_continuous(expand = c(0, 0)) +
   coord_cartesian(clip = "off")
 
-## O clipe argumento = "off" em qualquer sistema de coordenadas, sempre começando por coord_*, 
+## O argumento clip = "off" em qualquer sistema de coordenadas, sempre começando por coord_*, 
 ## permite fazer o desenho fora da área do painel.
