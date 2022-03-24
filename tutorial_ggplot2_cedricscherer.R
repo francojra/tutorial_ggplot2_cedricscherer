@@ -303,3 +303,23 @@ ggplot(chic, aes(x = date, y = temp)) +
   geom_point(color = "firebrick") +
   labs(x = "Year", y = NULL) +
   scale_y_continuous(label = function(x) {return(paste(x, "Degrees Fahrenheit"))})
+
+# Trabalhando com títulos ------------------------------------------------------------------------------------------------------------------
+
+## Adicionar um título ao gráfico com ggtitle()
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = "Temperature (°F)") +
+  ggtitle("Temperatures in Chicago")
+
+## Alternativamente você pode usar labs(). Com essa função você pode adicionar vários argumentos
+## como subtítulos, tags, fontes, etc.
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = "Temperature (°F)",
+       title = "Temperatures in Chicago",
+       subtitle = "Seasonal pattern of daily temperatures from 1997 to 2001",
+       caption = "Data: NMMAPS",
+       tag = "Fig. 1")
