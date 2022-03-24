@@ -207,3 +207,43 @@ ggplot(chic, aes(x = date, y = temp)) +
 
 ## Se quiser se ver livre de um elemento temático, o elemento é sempre element_blank().
 
+# Removendo títulos dos eixos --------------------------------------------------------------------------------------------------------------
+
+## Você pode usar o element_blank(), mas o caminho mais fácil para remover os rótulos
+## é usando o argumento NULL em labs().
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = NULL, y = "")
+
+## Note que o NULL remove o elemento, assim como o element_blank(), enquanto
+## quotes vazios irá manter o espaço para o título mas sem imprimir nada.
+
+# Intervalos dos limites dos eixos ---------------------------------------------------------------------------------------------------------
+
+## As vezes você pode querer limitar os intervalos dos eixos ao padrão do ggplot2, você
+## pode fazer isso no gráfico sem manipular a tabela de dados.
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = "Temperature (°F)") +
+  ylim(c(0, 50))
+
+## Alternativamente você pode usar scale_y_continuous(limits = c(0, 50)) ou
+## coord_cartesian(ylim = c(0, 50)). O primeiro remove todos os pontos de dados fora do intervalo, 
+## enquanto o segundo ajusta a área visível e é semelhante a ylim = c(0, 50). Existe
+## uma pequena diferença entre essas funções, apesar dos valores serem os mesmos, repare:
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = "Temperature (°F)") +
+  scale_y_continuous(limits = c(0, 50))
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = "Temperature (°F)") +
+  coord_cartesian(ylim = c(0, 50))
+
+## Você deve ter notado que no primeiro exemplo existe uma espaço vazio na borda
+## superior do gráfico, enquanto no segundo exemplo os pontos vão além do eixo y.
+
