@@ -197,3 +197,13 @@ ggplot(chic, aes(x = date, y = temp)) +
   labs(x = "Year", y = "Temperature (°F)") +
   theme(axis.text.x = element_text(angle = 50, vjust = 1, hjust = 1, size = 12))
 
+# Removendo ticks e textos dos eixos -------------------------------------------------------------------------------------------------------
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(axis.ticks.y = element_blank(),
+        axis.text.y = element_blank())
+
+## Se quiser se ver livre de um elemento temático, o elemento é sempre element_blank().
+
