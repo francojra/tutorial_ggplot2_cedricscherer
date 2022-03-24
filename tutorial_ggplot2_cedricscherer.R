@@ -293,3 +293,13 @@ ggplot(chic, aes(x = temp, y = temp + rnorm(nrow(chic), sd = 20))) +
   labs(x = "Temperature (°F)", y = "Temperature (°F) + random noise") +
   xlim(c(0, 100)) + ylim(c(0, 150)) +
   coord_fixed(ratio = 1/5)
+
+# Use uma função para alterar rótulos ------------------------------------------------------------------------------------------------------
+
+## Por vezes é útil alterar um pouco as suas etiquetas, talvez adicionando unidades 
+## ou sinais de percentagem sem as adicionar aos seus dados. Neste caso, pode usar uma função:
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = NULL) +
+  scale_y_continuous(label = function(x) {return(paste(x, "Degrees Fahrenheit"))})
