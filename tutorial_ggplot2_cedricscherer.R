@@ -272,3 +272,24 @@ ggplot(chic_high, aes(x = temp, y = o3)) +
 
 ## O argumento clip = "off" em qualquer sistema de coordenadas, sempre começando por coord_*, 
 ## permite fazer o desenho fora da área do painel.
+
+# Eixos com a mesma escala -----------------------------------------------------------------------------------------------------------------
+
+## A função coord_equal é um sistema de coordenadas com uma proporção específicada representando
+## o número de unidades sobre o eixo y equivalente a uma unidade sobre o eixo x. O padrão, ratio = 1,
+## assegura que uma unidade no eixo x tenha o mesmo comprimento que uma unidade no eixo y.
+
+ggplot(chic, aes(x = temp, y = temp + rnorm(nrow(chic), sd = 20))) +
+  geom_point(color = "sienna") +
+  labs(x = "Temperature (°F)", y = "Temperature (°F) + random noise") +
+  xlim(c(0, 100)) + ylim(c(0, 150)) +
+  coord_fixed()
+
+## Proporções maiores que 1 faz unidades sobre o eixo y maiores que unidades sobre o eixo x,
+## e vice versa:
+
+ggplot(chic, aes(x = temp, y = temp + rnorm(nrow(chic), sd = 20))) +
+  geom_point(color = "sienna") +
+  labs(x = "Temperature (°F)", y = "Temperature (°F) + random noise") +
+  xlim(c(0, 100)) + ylim(c(0, 150)) +
+  coord_fixed(ratio = 1/5)
