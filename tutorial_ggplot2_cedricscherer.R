@@ -323,3 +323,21 @@ ggplot(chic, aes(x = date, y = temp)) +
        subtitle = "Seasonal pattern of daily temperatures from 1997 to 2001",
        caption = "Data: NMMAPS",
        tag = "Fig. 1")
+
+# Fazer um título negrito e acrescentar um espaço na linha de base -------------------------------------------------------------------------
+
+## Para modificar as propriedades de um elemento do tema, nós usamos a função theme(), 
+## com ela modificamos elementos de textos com axis.title e axis.text, modificando tipo de letra 
+## e as margens.
+
+## Todas as seguintes modificações dos elementos do tema trabalham não apenas para o título, mas 
+## para outros rótulos como plot.subtitle, plot.caption, plot.caption, legend.title, legend.text, 
+## e axis.title e axis.text.
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = "Temperature (°F)",
+       title = "Temperatures in Chicago") +
+  theme(plot.title = element_text(face = "bold",
+                                  margin = margin(10, 0, 10, 0),
+                                  size = 14))
