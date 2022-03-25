@@ -6,3 +6,7 @@
 - Referência: https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/
 
 ### Etapas do script
+
+1. Pacotes necessários;
+2. Dataset;
+3. O pacote ggplot2
