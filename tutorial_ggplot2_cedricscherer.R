@@ -341,3 +341,34 @@ ggplot(chic, aes(x = date, y = temp)) +
   theme(plot.title = element_text(face = "bold",
                                   margin = margin(10, 0, 10, 0),
                                   size = 14))
+
+# Ajustando posições do título -------------------------------------------------------------------------------------------------------------
+
+## O alinhamento geral (direita, centro e esquerda) é controlado pelo hjust (ajuste horizontal)
+## Para ajustar o alinhamento vertical, usamos vjust.
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = NULL,
+       title = "Temperatures in Chicago",
+       caption = "Data: NMMAPS") +
+  theme(plot.title = element_text(hjust = 1, size = 16, face = "bold.italic"))
+
+## Desde 2019, o utilizador é capaz de especificar o alinhamento do título, subtítulo, 
+## e legenda com base na área do painel (o padrão) ou a margem da parcela através de 
+## plot.title.position e plot.caption.position. Essa é a melhor escolha 
+## na maioria dos casos e muitas pessoas ficaram muito felizes com essa 
+## nova característica, uma vez que especialmente com etiquetas de eixo y muito longas 
+## o alinhamento parece horrível:
+
+(g <- ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  scale_y_continuous(label = function(x) {return(paste(x, "Degrees Fahrenheit"))}) +
+  labs(x = "Year", y = NULL,
+       title = "Temperatures in Chicago between 1997 and 2001 in Degrees Fahrenheit",
+       caption = "Data: NMMAPS") +
+  theme(plot.title = element_text(size = 14, face = "bold.italic"),
+        plot.caption = element_text(hjust = 0)))
+
+g + theme(plot.title.position = "plot",
+          plot.caption.position = "plot")
