@@ -9,4 +9,5 @@
 
 1. Pacotes necessários;
 2. Dataset;
-3. O pacote ggplot2
+3. O pacote ggplot2;
+4. O básico do ggplot2;
