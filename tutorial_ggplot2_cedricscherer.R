@@ -404,3 +404,12 @@ theme_set(theme_bw(base_size = 12, base_family = "Roboto Condensed"))
 ## Pacote alternativo para baixar fontes
 
 devtools::install_github('r-lib/ragg')
+library(ragg)
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = "Temperature (°F)",
+       title = "Temperatures in Chicago",
+       subtitle = "Daily temperatures in °F from 1997 to 2001") +
+  theme(plot.title = element_text(family = "fancy_font", hjust = .5, size = 25),
+        plot.subtitle = element_text(family = "fancy_font", hjust = .5, size = 15))
