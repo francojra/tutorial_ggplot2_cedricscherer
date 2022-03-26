@@ -394,3 +394,13 @@ ggplot(chic, aes(x = date, y = temp)) +
        subtitle = "Daily temperatures in °F from 1997 to 2001") +
   theme(plot.title = element_text(family = "Bangers", hjust = .5, size = 25),
         plot.subtitle = element_text(family = "Playfair", hjust = .5, size = 15))
+
+## Você também pode estabelecer essas fontes para todos os elementos dos seus gráficos.
+## Estarei usando a fonte Roboto Condensed para todos os seguintes gráficos.
+
+font_add_google("Roboto Condensed", "Roboto Condensed")
+theme_set(theme_bw(base_size = 12, base_family = "Roboto Condensed"))
+
+## Pacote alternativo para baixar fontes
+
+devtools::install_github('r-lib/ragg')
