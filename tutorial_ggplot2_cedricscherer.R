@@ -372,3 +372,25 @@ ggplot(chic, aes(x = date, y = temp)) +
 
 g + theme(plot.title.position = "plot",
           plot.caption.position = "plot")
+
+# Usando fontes não tradicionais nos títulos -----------------------------------------------------------------------------------------------
+
+## Você também pode utilizar diferentes fontes e não somente a padrão fornecida pelo R.
+## Existem vários pacotes que ajudam você a baixar fontes. Aqui eu uso o pacote showtext
+## que facilita o uso de diversos tipo de fontes (TrueType, OpenType, Type 1, web fonts, 
+## etc.) nos gráficos. Após carregar o pacote, você necessita adicionar as fontes. Eu
+## regularmente uso o Google fonts que pode ser importado com a função font_add_google(), mas
+## você também pode adicionar outra fonte com font_add().
+
+library(showtext)
+font_add_google("Playfair Display", ## name of Google font
+                "Playfair")  ## name that will be used in R
+font_add_google("Bangers", "Bangers")
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = "Temperature (°F)",
+       title = "Temperatures in Chicago",
+       subtitle = "Daily temperatures in °F from 1997 to 2001") +
+  theme(plot.title = element_text(family = "Bangers", hjust = .5, size = 25),
+        plot.subtitle = element_text(family = "Playfair", hjust = .5, size = 15))
