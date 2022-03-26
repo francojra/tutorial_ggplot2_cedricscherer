@@ -413,3 +413,16 @@ ggplot(chic, aes(x = date, y = temp)) +
        subtitle = "Daily temperatures in °F from 1997 to 2001") +
   theme(plot.title = element_text(family = "fancy_font", hjust = .5, size = 25),
         plot.subtitle = element_text(family = "fancy_font", hjust = .5, size = 15))
+
+# Mudando o espaçamento entre múltiplas linhas do texto ------------------------------------------------------------------------------------
+
+## Você pode usar o argumento lineheight para mudar o espaçamento entre linhas. Nesse
+## exemplo, eu tenho deixado as linhas mais unidas (lineheight < 1).
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = "Temperature (°F)") +
+  ggtitle("Temperatures in Chicago\nfrom 1997 to 2001") +
+  theme(plot.title = element_text(lineheight = .8, size = 16))
+
+
