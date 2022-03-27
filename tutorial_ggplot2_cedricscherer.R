@@ -401,7 +401,7 @@ ggplot(chic, aes(x = date, y = temp)) +
 font_add_google("Roboto Condensed", "Roboto Condensed")
 theme_set(theme_bw(base_size = 12, base_family = "Roboto Condensed"))
 
-## Pacote alternativo para baixar fontes
+## Pacote alternativo para baixar fontes:
 
 devtools::install_github('r-lib/ragg')
 library(ragg)
@@ -456,3 +456,24 @@ ggplot(chic,
   geom_point() +
   labs(x = "Year", y = "Temperature (°F)") +
   guides(color = "none")
+
+# Removendo títulos da legenda -------------------------------------------------------------------------------------------------------------
+
+## Nós usamos o argumento element_blank para remover.
+
+ggplot(chic, aes(x = date, y = temp, color = season)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(legend.title = element_blank())
+
+## Você pode alcançar o mesmo resultado estabelecendo NULL para legenda.
+## Exemplo: scale_color_discrete(name = NULL) ou labs(color = NULL). 
+
+ggplot(chic, aes(x = date, y = temp, color = season)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)", color = NULL) 
+
+ggplot(chic, aes(x = date, y = temp, color = season)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)") +
+  scale_color_discrete(name = NULL)
