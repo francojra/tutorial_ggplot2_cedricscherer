@@ -477,3 +477,31 @@ ggplot(chic, aes(x = date, y = temp, color = season)) +
   geom_point() +
   labs(x = "Year", y = "Temperature (°F)") +
   scale_color_discrete(name = NULL)
+
+# Mudando a posição da legenda -------------------------------------------------------------------------------------------------------------
+
+## Se você quiser mudar a posição da legenda que por padrão fica na direita, você
+## pode usar o argumento legend.position no theme. Possíveis posições são top, bottom,
+## right and left.
+
+ggplot(chic, aes(x = date, y = temp, color = season)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(legend.position = "top")
+
+## Você também pode colocar a legenda dentro do painel especificando um vetor x e y,
+## variando de 0 (esquerda e abaixo) a 1 (dieita e topo).
+
+ggplot(chic, aes(x = date, y = temp, color = season)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)",
+       color = NULL) +
+  theme(legend.position = c(.15, .15),
+        legend.background = element_rect(fill = "transparent"))
+
+## O background da legenda com preenchimento trasnparente permite não
+## esconder os dados.
+
+
+        
+    
