@@ -524,5 +524,49 @@ ggplot(chic, aes(x = date, y = temp, color = season)) +
   theme(legend.title = element_text(family = "Playfair",
                                     color = "chocolate",
                                     size = 14, face = "bold"))
-        
-    
+
+# Mudando o título da legenda --------------------------------------------------------------------------------------------------------------
+
+## O caminho mais fácil para mudar o título da legenda é usar a camada labs().
+
+ggplot(chic, aes(x = date, y = temp, color = season)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)",
+       color = "Seasons\nindicated\nby colors:") +
+  theme(legend.title = element_text(family = "Playfair",
+                                    color = "chocolate",
+                                    size = 14, face = "bold"))
+
+# Adicionando novas fontes ao Windows ------------------------------------------------------------------------------------------------------
+
+library(extrafont)
+font_import()
+loadfonts(device = "win")
+
+ggplot(chic, aes(x = date, y = temp, color = season)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)",
+       color = "Seasons\nindicated\nby colors:") +
+  theme(legend.title = element_text(family = "serif",
+                                    color = "chocolate",
+                                    size = 14, face = "bold"))
+
+## Vendo quais fontes disponíveis
+windowsFonts()
+
+ggplot(chic, aes(x = date, y = temp, color = season)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)",
+       color = "Seasons\nindicated\nby colors:") +
+  theme(legend.title = element_text(family = "mono",
+                                    color = "chocolate",
+                                    size = 14, face = "bold"))
+
+ggplot(chic, aes(x = date, y = temp, color = season)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)",
+       color = "Seasons\nindicated\nby colors:") +
+  theme(legend.title = element_text(family = "Playfair",
+                                    color = "chocolate",
+                                    size = 14, face = "bold"))
+
