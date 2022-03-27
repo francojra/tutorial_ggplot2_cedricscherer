@@ -537,6 +537,17 @@ ggplot(chic, aes(x = date, y = temp, color = season)) +
                                     color = "chocolate",
                                     size = 14, face = "bold"))
 
+## O título da legenda também pode ser modificado usando scale_color_discrete(name = "title")
+## ou guides(color = guide_legend("title")).
+
+ggplot(chic, aes(x = date, y = temp, color = season)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(legend.title = element_text(family = "Playfair",
+                                    color = "chocolate",
+                                    size = 14, face = "bold")) +
+  scale_color_discrete(name = "Seasons\nindicated\nby colors:")
+
 # Adicionando novas fontes ao Windows ------------------------------------------------------------------------------------------------------
 
 library(extrafont)
