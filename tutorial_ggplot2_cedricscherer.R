@@ -425,4 +425,34 @@ ggplot(chic, aes(x = date, y = temp)) +
   ggtitle("Temperatures in Chicago\nfrom 1997 to 2001") +
   theme(plot.title = element_text(lineheight = .8, size = 16))
 
+# Trabalhando com legendas -----------------------------------------------------------------------------------------------------------------
 
+## Nós iremos colorir o gráfico de acordo com as estações. Nós mapearemas a variável
+## estação para a estética de cor. O padrão do ggplot2 automaticamente adiciona a legenda
+## quando mapeamos a variável no aesthetic (aes). 
+
+ggplot(chic,
+  aes(x = date, y = temp, color = season)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)")
+
+# Retirando a legenda do gráfico -----------------------------------------------------------------------------------------------------------
+
+## A forma mais fácil é usar theme(legend.position = "none"):
+
+ggplot(chic,
+       aes(x = date, y = temp, color = season)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(legend.position = "none")
+
+## Você também pode utilizar guides(color = "none") ou scale_color_discrete(guide = "none")
+## em alguns casos específicos. Enquanto o exemplo acima remove todas as legendas, você
+## pode remover legendas particulares e manter outras usando o guides. 
+
+ggplot(chic,
+       aes(x = date, y = temp,
+           color = season, shape = season)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)") +
+  guides(color = "none")
