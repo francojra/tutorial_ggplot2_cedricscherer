@@ -502,6 +502,27 @@ ggplot(chic, aes(x = date, y = temp, color = season)) +
 ## O background da legenda com preenchimento trasnparente permite não
 ## esconder os dados.
 
+# Mudando a direção da legenda -------------------------------------------------------------------------------------------------------------
 
+## A direção padrão do ggplot2 é vertical, mas horizontal quando escolhemos opções
+## de 'bottom' and 'top'. Nós também temos a opção de escolher a direção:
+
+ggplot(chic, aes(x = date, y = temp, color = season)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(legend.position = c(.5, .97),
+        legend.background = element_rect(fill = "transparent")) +
+  guides(color = guide_legend(direction = "horizontal"))
+
+# Mudando o estilo do título da legenda ----------------------------------------------------------------------------------------------------
+
+## Você pode mudar a aparência do título da legenda por ajustar o elemento theme.
+
+ggplot(chic, aes(x = date, y = temp, color = season)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(legend.title = element_text(family = "Playfair",
+                                    color = "chocolate",
+                                    size = 14, face = "bold"))
         
     
