@@ -581,3 +581,29 @@ ggplot(chic, aes(x = date, y = temp, color = season)) +
                                     color = "chocolate",
                                     size = 14, face = "bold"))
 
+# Mudando a ordem dos elementos da legenda -------------------------------------------------------------------------------------------------
+
+chic$season <-
+  factor(chic$season,
+         levels = c("Winter", "Spring", "Summer", "Autumn"))
+
+ggplot(chic, aes(x = date, y = temp, color = season)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)")
+
+# Mudando os rótulos da legenda ------------------------------------------------------------------------------------------------------------
+
+## Nós substituimos estações pelos meses, através do vetor de nomes em 
+## scale_color_discrete().
+
+ggplot(chic, aes(x = date, y = temp, color = season)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)") +
+  scale_color_discrete(
+    name = "Seasons:",
+    labels = c("Mar—May", "Jun—Aug", "Sep—Nov", "Dec—Feb")) +
+  theme(legend.title = element_text(
+    family = "mono", color = "chocolate", size = 14, face = 2))
+
+
+
