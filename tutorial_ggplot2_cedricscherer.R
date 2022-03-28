@@ -605,5 +605,20 @@ ggplot(chic, aes(x = date, y = temp, color = season)) +
   theme(legend.title = element_text(
     family = "mono", color = "chocolate", size = 14, face = 2))
 
+# Mudando o background da caixa da legenda --------------------------------------------------------------------------------------------------
 
+## Para mudar a cor do background da legenda, nós usamos a camada de tema com
+## o elemento legend.key:
+
+ggplot(chic, aes(x = date, y = temp, color = season)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(legend.key = element_rect(fill = "darkgoldenrod1"),
+        legend.title = element_text(family = "Playfair",
+                                    color = "chocolate",
+                                    size = 14, face = 2)) +
+  scale_color_discrete("Seasons:")
+
+## Se quiser se livrar das caixas da legenda, você pode usar fill = NA ou 
+## fill = "transparent".
 
