@@ -679,7 +679,8 @@ ggplot(chic, aes(x = date, y = o3)) +
   scale_color_discrete(name = "Type:")
 
 ## Entretanto, nós queremos as cores cinza e laranja. Para mudar a cor de acordo com
-## a que desejamos nós colocamos a camada scale_color_manual.
+## a que desejamos nós colocamos a camada scale_color_manual. Adicionalmente nós detalhamos
+## na legenda
 
 ggplot(chic, aes(x = date, y = o3)) +
   geom_line(aes(color = "line")) +
