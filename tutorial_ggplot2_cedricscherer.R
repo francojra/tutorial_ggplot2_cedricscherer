@@ -677,3 +677,17 @@ ggplot(chic, aes(x = date, y = o3)) +
   geom_point(aes(color = "points")) +
   labs(x = "Year", y = "Ozone") +
   scale_color_discrete(name = "Type:")
+
+## Entretanto, nós queremos as cores cinza e laranja. Para mudar a cor de acordo com
+## a que desejamos nós colocamos a camada scale_color_manual.
+
+ggplot(chic, aes(x = date, y = o3)) +
+  geom_line(aes(color = "line")) +
+  geom_point(aes(color = "points")) +
+  labs(x = "Year", y = "Ozone") +
+  scale_color_manual(name = NULL,
+                     guide = "legend",
+                     values = c("points" = "darkorange2",
+                                "line" = "gray")) +
+  guides(color = guide_legend(override.aes = list(linetype = c(1, 0),
+                                                  shape = c(NA, 16))))
