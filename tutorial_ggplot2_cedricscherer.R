@@ -622,3 +622,16 @@ ggplot(chic, aes(x = date, y = temp, color = season)) +
 ## Se quiser se livrar das caixas da legenda, você pode usar fill = NA ou 
 ## fill = "transparent".
 
+# Mudando o tamanho dos símbolos da legenda ------------------------------------------------------------------------------------------------
+
+## O tamanho padrão dos símbolos da legenda podem ser pequenos, especialmente sem as
+## caixas. Para rsolver isso, nós usamos o overrride da camada guides().
+
+ggplot(chic, aes(x = date, y = temp, color = season)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(legend.key = element_rect(fill = NA),
+        legend.title = element_text(color = "chocolate",
+                                    size = 14, face = 2)) +
+  scale_color_discrete("Seasons:") +
+  guides(color = guide_legend(override.aes = list(size = 5)))
