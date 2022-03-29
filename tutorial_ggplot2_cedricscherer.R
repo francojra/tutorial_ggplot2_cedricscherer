@@ -635,3 +635,22 @@ ggplot(chic, aes(x = date, y = temp, color = season)) +
                                     size = 14, face = 2)) +
   scale_color_discrete("Seasons:") +
   guides(color = guide_legend(override.aes = list(size = 5)))
+
+# Deixar uma camada fora da legenda --------------------------------------------------------------------------------------------------------
+
+## Aqui você tem dois geoms mapeados para a mesma variável, com cores para a estética
+## da camada de pontos e outra camada chamada rug. Por padrão, ambos são representados
+## na legenda.
+
+ggplot(chic, aes(x = date, y = temp, color = season)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)") +
+  geom_rug()
+
+## Dentro do geom_rug ou point você pode usar o show.legende = FALSE para desativar
+## uma das legendas.
+
+ggplot(chic, aes(x = date, y = temp, color = season)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)") +
+  geom_rug(show.legend = FALSE)
