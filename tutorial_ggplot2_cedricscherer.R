@@ -654,3 +654,26 @@ ggplot(chic, aes(x = date, y = temp, color = season)) +
   geom_point() +
   labs(x = "Year", y = "Temperature (°F)") +
   geom_rug(show.legend = FALSE)
+
+# Adicionando legendas manualmente ---------------------------------------------------------------------------------------------------------
+
+## {ggplot2} will not add a legend automatically unless you map aesthetics 
+## (color, size etc.) to a variable
+
+## ggplot2 não adiciona legenda automaticamente, isso acontece apenas quando você
+## determina no aesthetic cor, preenchimento ou tamanho como uma variável.
+
+ggplot(chic, aes(x = date, y = o3)) +
+  geom_line(color = "gray") +
+  geom_point(color = "darkorange2") +
+  labs(x = "Year", y = "Ozone")
+
+## Para adicionar uma legenda nesse caso, nós podemos definir uma string dentro
+## das camadas de ponto e linha do exemplo abaixo. Nesse caso ela não ocorre como
+## uma variável, mas uma string. Então na escala de cor, nós adicionamos a legenda.
+
+ggplot(chic, aes(x = date, y = o3)) +
+  geom_line(aes(color = "line")) +
+  geom_point(aes(color = "points")) +
+  labs(x = "Year", y = "Ozone") +
+  scale_color_discrete(name = "Type:")
