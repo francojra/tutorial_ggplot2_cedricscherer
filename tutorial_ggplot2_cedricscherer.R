@@ -754,3 +754,39 @@ ggplot(chic, aes(x = date, y = temp)) +
   theme(panel.border = element_rect(
     fill = "#64D2AA99", color = "#64D2AA", size = 2)
   )
+
+# Mudando as linhas do grid ----------------------------------------------------------------------------------------------------------------
+
+## Existem dois tipos de linhas de grid: linhas maiores associadas aos ticks, e linhas menores
+## entre as maiores. Você pode mudar todas essas usando panel.grid, ou apenas uma delas usando
+## panel.grid.minor e panel.grid.major.
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(panel.grid.major = element_line(color = "gray10", size = .5),
+        panel.grid.minor = element_line(color = "#64D2AA", size = .25))
+
+## Você pode especificar ainda mais as linhas dos grids para os quatro diferentes níveis.
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(panel.grid.major = element_line(size = .5, linetype = "dashed"),
+        panel.grid.minor = element_line(size = .25, linetype = "dotted"),
+        panel.grid.major.x = element_line(color = "red1"),
+        panel.grid.major.y = element_line(color = "blue1"),
+        panel.grid.minor.x = element_line(color = "red4"),
+        panel.grid.minor.y = element_line(color = "blue4"))
+
+## Você pode remover algumas ou todas as linhas do grid.
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(panel.grid.minor = element_blank())
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(panel.grid = element_blank())
