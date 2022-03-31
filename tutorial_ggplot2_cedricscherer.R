@@ -731,4 +731,26 @@ ggplot(chic,
 
 # Trabalhando com background e linhas de grid ----------------------------------------------------------------------------------------------
 
+## Existem formas de você mudar toda a aparência do seu gráfico com uma função, mas você também
+## pode mudar apenas alguns dos elementos do background.
 
+# Mudando a cor do painel ------------------------------------------------------------------------------------------------------------------
+
+## Para mudar a cor do preenchimento do background da área do painel (área onde a geometria
+## do gráfico é 'plotada'), você utiliza o argumento panel.background.
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "#1D8565", size = 2) +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(panel.background = element_rect(
+    fill = "#64D2AA", color = "#64D2AA", size = 2))
+
+## No seguinte exemplo, eu ilustrei usando uma cor semitransparente para o preenchimento (fill)
+## usando o panel.border, e a mesma cor anterior para o contorno do painel.
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "#1D8565", size = 2) +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(panel.border = element_rect(
+    fill = "#64D2AA99", color = "#64D2AA", size = 2)
+  )
