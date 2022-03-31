@@ -692,3 +692,43 @@ ggplot(chic, aes(x = date, y = o3)) +
                                 "line" = "gray")) +
   guides(color = guide_legend(override.aes = list(linetype = c(1, 0),
                                                   shape = c(NA, 16))))
+
+# Usando outros estilos de legenda ---------------------------------------------------------------------------------------------------------
+
+## O padrão da legenda para variáveis categóricas como season é o guide_legend(), como visto
+## nos exemplos anteriores. Se você mapeia uma variável contínua no aesthetic, o padrão
+## utilizado não é o guide_legend() mas o guide_colorbar() ou guide_colourbar().
+
+ggplot(chic,
+       aes(x = date, y = temp, color = temp)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)", color = "Temperature (°F)")
+
+## Entretanto, ao usar o guide_legend, você pode forçar a legenda para mostrar cores discretas
+## para cada valor numérico.
+
+ggplot(chic,
+       aes(x = date, y = temp, color = temp)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)", color = "Temperature (°F)") +
+  guides(color = guide_legend())
+
+## Ou você pode usar escalas binned na legenda.
+
+ggplot(chic,
+       aes(x = date, y = temp, color = temp)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)", color = "Temperature (°F)") +
+  guides(color = guide_bins())
+
+## Ou escalas agrupadas como barras de cores discretas.
+
+ggplot(chic,
+       aes(x = date, y = temp, color = temp)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)", color = "Temperature (°F)") +
+  guides(color = guide_colorsteps())
+
+# Trabalhando com background e linhas de grid ----------------------------------------------------------------------------------------------
+
+
