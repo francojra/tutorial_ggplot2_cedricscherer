@@ -790,3 +790,13 @@ ggplot(chic, aes(x = date, y = temp)) +
   geom_point(color = "firebrick") +
   labs(x = "Year", y = "Temperature (°F)") +
   theme(panel.grid = element_blank())
+
+# Mudando o espaçamento das linhas de grid -------------------------------------------------------------------------------------------------
+
+## Depois, você pode definir os limites entre ambos os grids, major and minor.
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = "Temperature (°F)") +
+  scale_y_continuous(breaks = seq(0, 100, 10),
+                     minor_breaks = seq(0, 100, 2.5)) 
