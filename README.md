@@ -28,4 +28,12 @@
 19. Fazer um título negrito e acrescentar um espaço na linha de base;
 20. Ajustando posições do título;
 21. Usando fontes não tradicionais nos títulos;
-22.  
+22. Mudando o espaçamento entre múltiplas linhas do texto;
+23. Trabalhando com legendas;
+24. Retirando a legenda do gráfico;
+25. Removendo títulos da legenda;
+26. Mudando a posição da legenda;
+27. Mudando a direção da legenda;
+28. Mudando o estilo do título da legenda;
+29. Adicionando novas fontes ao Windows;
+30. Mudando a ordem dos elementos da legenda;
