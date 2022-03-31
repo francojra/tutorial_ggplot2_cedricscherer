@@ -800,3 +800,25 @@ ggplot(chic, aes(x = date, y = temp)) +
   labs(x = "Year", y = "Temperature (°F)") +
   scale_y_continuous(breaks = seq(0, 100, 10),
                      minor_breaks = seq(0, 100, 2.5)) 
+
+# Mudando a cor do background do gráfico ---------------------------------------------------------------------------------------------------
+
+## Similarmente ao background do painel do gráfico com fill, para modificar o background
+## do gráfico, você utiliza plot.background enquanto no anterior você usou panel.background.
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(plot.background = element_rect(fill = "gray60",
+                                       color = "gray30", size = 2))
+
+## Você pode alcançar uma única cor de background por estabelecer as mesmas cores em plot.background
+## e panel.background. Ou você pode estabelecer o preenchimento do panel.background como NA ou
+## "transparent", e o blackground do plot preenche todo o gráfico.
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(panel.background = element_rect(fill = NA),
+        plot.background = element_rect(fill = "gray60",
+                                       color = "gray30", size = 2))
