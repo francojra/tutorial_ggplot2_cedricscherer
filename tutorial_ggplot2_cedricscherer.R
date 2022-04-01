@@ -855,3 +855,23 @@ ggplot(chic, aes(x = date, y = temp)) +
 ## Para mudar as variáveis das linhas e colunas, basta colocar facet_grid(year ~ season) 
 ## ou facet_grid(season ~ year).
 
+# Criando múltiplas janelas do gráfico com uma variável ------------------------------------------------------------------------------------
+
+## facet_wrap cria uma faceta com uma variável usando um til na frente facet_wrap(~ variable). 
+## A aparência dos subplots é controlada por ncol e nrow.
+
+g <-
+  ggplot(chic, aes(x = date, y = temp)) +
+    geom_point(color = "chartreuse4", alpha = .3) +
+    labs(x = "Year", y = "Temperature (°F)") +
+    theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+g + facet_wrap(~ year)
+
+## Adicionalmente, você pode arranjar os plots em uma única linha.
+
+g + facet_wrap(~ year, nrow = 1)
+
+## Ou mesmo como um grid assimétrico de gráficos.
+
+g + facet_wrap(~ year, ncol = 3) + theme(axis.title.x = element_text(hjust = .15))
