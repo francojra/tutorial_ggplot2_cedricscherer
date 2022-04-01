@@ -37,3 +37,21 @@
 28. Mudando o estilo do título da legenda;
 29. Adicionando novas fontes ao Windows;
 30. Mudando a ordem dos elementos da legenda;
+31. Mudando os rótulos da legenda;
+32. Mudando o background da caixa da legenda;
+33. Mudando o tamanho dos símbolos da legenda;
+34. Deixar uma camada fora da legenda;
+35. Adicionando legendas manualmente;
+36. Usando outros estilos de legenda;
+37. Trabalhando com background e linhas de grid;
+38. Mudando a cor do painel;
+39. Mudando as linhas do grid;
+40. Mudando o espaçamento das linhas de grid;
+41. Mudando a cor do background do gráfico;
+42. Trabalhando com margens;
+43. Trabalhando com múltiplos paineis do gráfico;
+44. Criando um grid de múltiplas janelas com duas variáveis;
+45. Criando múltiplas janelas do gráfico com uma variável;
+46. Permitir que os eixos vagueiem livres;
+47. Use facet_wrap com duas variáveis;
+48. 
