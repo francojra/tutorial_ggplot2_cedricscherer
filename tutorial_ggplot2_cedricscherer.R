@@ -837,3 +837,21 @@ ggplot(chic, aes(x = date, y = temp)) +
   labs(x = "Year", y = "Temperature (°F)") +
   theme(plot.background = element_rect(fill = "gray60"),
         plot.margin = margin(t = 1, r = 3, b = 1, l = 8, unit = "cm"))
+
+# Trabalhando com múltiplos paineis do gráfico ---------------------------------------------------------------------------------------------
+
+## O pacote ggplot2 tem duas funções para criar múltiplos painéis chamado facets. Eles 
+## apresentam algumas diferenças, o facet_wrap cria essencialmente uma faixa de gráficos
+## baseados em uma única variável enquanto o facet_grid pode abranger duas variáveis.
+
+# Criando um grid de múltiplas janelas com duas variáveis ----------------------------------------------------------------------------------
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "orangered", alpha = .3) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) +
+  labs(x = "Year", y = "Temperature (°F)") +
+  facet_grid(year ~ season)
+
+## Para mudar as variáveis das linhas e colunas, basta colocar facet_grid(year ~ season) 
+## ou facet_grid(season ~ year).
+
