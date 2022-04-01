@@ -875,3 +875,14 @@ g + facet_wrap(~ year, nrow = 1)
 ## Ou mesmo como um grid assimétrico de gráficos.
 
 g + facet_wrap(~ year, ncol = 3) + theme(axis.title.x = element_text(hjust = .15))
+
+# Permitir que os eixos vagueiem livres ----------------------------------------------------------------------------------------------------
+
+## O padrão do ggplot2 separa as janelas dos gráficos com as escalas equivalentes. Mas
+## algumas vezes você quer que as escalas dos painéis sejam associadas ao conjunto de dados
+## de cada variável. Você pode fazer isso usando o argumento scales = "free".
+
+g + facet_wrap(~ year, nrow = 2, scales = "free")
+
+## Note que tanto a escala de x como de y é diferente para cada janela do gráfico.
+
