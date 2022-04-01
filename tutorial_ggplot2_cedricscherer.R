@@ -822,3 +822,18 @@ ggplot(chic, aes(x = date, y = temp)) +
   theme(panel.background = element_rect(fill = NA),
         plot.background = element_rect(fill = "gray60",
                                        color = "gray30", size = 2))
+
+# Trabalhando com margens ------------------------------------------------------------------------------------------------------------------
+
+## As vezes é necessário adicionar algum espaço as margens do gráfico. Similar aos exemplos
+## anteriores, nós podemos usar a camada theme() com o argumento plot.margin. Vamos agora
+## adicionar espaço nas margens da direita e esquerda. O argumento plot.margin permite usar
+## diversas unidades de medida (cm, polegadas, etc.), mas ela requer que as unidades sejam
+## definidas com o pacote grid. Você pode usar o mesmo valor para todos os lados do gráfico com
+## rep(x, 4) ou definir distâncias particulares.
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(plot.background = element_rect(fill = "gray60"),
+        plot.margin = margin(t = 1, r = 3, b = 1, l = 8, unit = "cm"))
