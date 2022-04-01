@@ -886,3 +886,13 @@ g + facet_wrap(~ year, nrow = 2, scales = "free")
 
 ## Note que tanto a escala de x como de y é diferente para cada janela do gráfico.
 
+# Use facet_wrap com duas variáveis --------------------------------------------------------------------------------------------------------
+
+g + facet_wrap(year ~ season, nrow = 4, scales = "free_x")
+
+## Usando facet_wrap você ainda é capaz de controlar o desenho do grid: você pode rearranjar
+## o número de gráficos por linhas e colunas, e pode também deixar todas as escalas dos eixos 
+## livres. Em contraste, facet_grid irá tomar as escalas livres apenas para linhas ou colunas.
+
+g + facet_grid(year ~ season, scales = "free_x")
+g + facet_grid(year ~ season, scales = "free_y")
