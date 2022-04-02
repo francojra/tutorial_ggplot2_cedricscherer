@@ -1078,3 +1078,16 @@ ga + scale_color_manual(values = c("dodgerblue4",
                                    "darkolivegreen4",
                                    "darkorchid3",
                                    "goldenrod1"))
+
+# Utilizar paleta de cores pré-estabelecidas: ----------------------------------------------------------------------------------------------
+
+## O ColorBrewer Palettes é um ferramenta online popular para selecionar esquemas de cores.
+## Os doferentes conjuntos de cores tem sido desenhados para produzir atrativos esquemas de cores
+## de aparência similar com alcance de três a doze cores. Essas paletas de cores estão disponíveis
+## nas funções do ggplot2 e podem ser aplicadas utilizando scale_*_brewer.
+
+ga + scale_color_brewer(palette = "Set1")
+
+## Você pode explorar todos os esquemas de cores com a seguinte função:
+
+RColorBrewer::display.brewer.all()
