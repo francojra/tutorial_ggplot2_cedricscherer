@@ -1116,3 +1116,32 @@ g2 <- ga + scale_color_npg()
 
 library(patchwork)
 (g1 + g2) * theme(legend.position = "top")
+
+# Variáveis quantitativas ------------------------------------------------------------------------------------------------------------------
+
+## Variáveis quantitativas representam quantidades mensuráveis numéricas. Variáveis quantitativas
+## podem ser contínuas (números quebrados) ou discretas (números inteiros).
+
+## - Contínuas: dados medidos que apresentam valores dentro de um alcance. Ex.: peso, altura.
+## - Discretas: observações com valores limitados ou de contagens. Ex.: idade, número de filhos.
+
+## Em nosso exemplos, nós iremos usar a variável temperatura que é contínua. A função scale_*_gradient()
+## é um gradiente sequencial e a função scale_*_gradient2() apresenta cores divergentes.
+
+## O padrão do R também utiliza cores para variáveis contínuas:
+
+gb <- ggplot(chic, aes(x = date, y = temp, color = temp)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)", color = "Temperature (°F):")
+
+gb + scale_color_continuous()
+
+## Esse código produz o mesmo gráfico:
+
+gb + scale_color_gradient()
+
+## Esse código exibe um padrão para cores divergentes:
+
+mid <- mean(chic$temp)  ## midpoint
+
+gb + scale_color_gradient2(midpoint = mid)
