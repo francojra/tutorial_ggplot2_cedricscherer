@@ -1053,4 +1053,28 @@ ggplot(chic, aes(x = date, y = temp)) +
 ## A paleta de cores deverá ser escolhida dependendo do tipo de variável, com sequencial e divergente
 ## cores sendo usadas para variáveis contínuas, e cores qualitativas usadas para variáveis categóricas.
 
+# Variáveis qualitativas -------------------------------------------------------------------------------------------------------------------
 
+## Variáveis qualitativas ou categóricas representa tipos de dados que podem ser divididos em 
+## grupos (categorias). As variáveis podem ser especificadas como nominais, ordinais e binárias.
+
+## - Nominais: descrições não ordenadas;
+## - Ordinais: descrições ordenadas ou em níveis;
+## - Binárias: apenas duas opções mutualmente excludentes.
+
+## O padrão de cores para variáveis categóricas aparece como:
+
+(ga <- ggplot(chic, aes(x = date, y = temp, color = season)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)", color = NULL))
+
+## Para selecionar cores manualmente:
+
+## Você pode selecionar seu próprio conjunto de cores e atribuir elas as suas variáveis 
+## categóricas com a função scale_*_manual (o * pode ser color, colour ou fill). O número
+## de cores especificadas deve estar de acordo com o número de grupos da sua variável categórica.
+
+ga + scale_color_manual(values = c("dodgerblue4",
+                                   "darkolivegreen4",
+                                   "darkorchid3",
+                                   "goldenrod1"))
