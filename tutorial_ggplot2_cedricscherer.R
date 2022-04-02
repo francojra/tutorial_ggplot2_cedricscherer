@@ -1046,3 +1046,11 @@ ggplot(chic, aes(x = date, y = temp)) +
              color = "#3cc08f", fill = "#c08f3c") +
   labs(x = "Year", y = "Temperature (°F)")
 
+# Atribuindo cores as variáveis ------------------------------------------------------------------------------------------------------------
+
+## No ggplot2 cores atribuídas a variáveis são definidas na camada de scale_color_* ou scale_fill_*
+## Para usar cores nos seus dados, você deve conhecer se suas variáveis são contínuas ou categóricas.
+## A paleta de cores deverá ser escolhida dependendo do tipo de variável, com sequencial e divergente
+## cores sendo usadas para variáveis contínuas, e cores qualitativas usadas para variáveis categóricas.
+
+
