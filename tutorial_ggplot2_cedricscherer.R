@@ -896,3 +896,74 @@ g + facet_wrap(year ~ season, nrow = 4, scales = "free_x")
 
 g + facet_grid(year ~ season, scales = "free_x")
 g + facet_grid(year ~ season, scales = "free_y")
+
+# Modificando o estilo das faixas dos gráficos ---------------------------------------------------------------------------------------------
+
+## Usando a camada theme(), você pode modificar a aparência do texto das faixas (título de cada
+## faceta) e dos boxes.
+
+g + facet_wrap(~ year, nrow = 1, scales = "free_x") +
+  theme(strip.text = element_text(face = "bold", color = "chartreuse4",
+                                  hjust = 0, size = 20),
+        strip.background = element_rect(fill = "chartreuse3", linetype = "dotted"))
+
+## As seguintes duas funções adaptadas a partir desta resposta por Claus Wilke, o autor do pacote
+## ggtext, permite destacar rótulos específicos em combinação com element_textbox() que é promovido
+## pelo ggtext.
+
+#install.packages("ggtext")
+library(ggtext)
+library(rlang)
+
+element_textbox_highlight <- function(..., hi.labels = NULL, hi.fill = NULL,
+                                      hi.col = NULL, hi.box.col = NULL, hi.family = NULL) {
+  structure(
+    c(element_textbox(...),
+      list(hi.labels = hi.labels, hi.fill = hi.fill, hi.col = hi.col, hi.box.col = hi.box.col, hi.family = hi.family)
+    ),
+    class = c("element_textbox_highlight", "element_textbox", "element_text", "element")
+  )
+}
+
+element_grob.element_textbox_highlight <- function(element, label = "", ...) {
+  if (label %in% element$hi.labels) {
+    element$fill <- element$hi.fill %||% element$fill
+    element$colour <- element$hi.col %||% element$colour
+    element$box.colour <- element$hi.box.col %||% element$box.colour
+    element$family <- element$hi.family %||% element$family
+  }
+  NextMethod()
+}
+
+## Agora pode utilizá-lo e especificar, por exemplo, todos as faixas:
+
+g + facet_wrap(year ~ season, nrow = 4, scales = "free_x") +
+  theme(
+    strip.background = element_blank(),
+    strip.text = element_textbox_highlight(
+      family = "Playfair", size = 12, face = "bold",
+      fill = "white", box.color = "chartreuse4", color = "chartreuse4",
+      halign = .5, linetype = 1, r = unit(5, "pt"), width = unit(1, "npc"),
+      padding = margin(5, 0, 3, 0), margin = margin(0, 1, 3, 1),
+      hi.labels = c("1997", "1998", "1999", "2000"),
+      hi.fill = "chartreuse4", hi.box.col = "black", hi.col = "white"
+    )
+  )
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(aes(color = season == "Summer"), alpha = .3) +
+  labs(x = "Year", y = "Temperature (°F)") +
+  facet_wrap(~ season, nrow = 1) +
+  scale_color_manual(values = c("gray40", "firebrick"), guide = "none") +
+  theme(
+    axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1),
+    strip.background = element_blank(),
+    strip.text = element_textbox_highlight(
+      size = 12, face = "bold",
+      fill = "white", box.color = "white", color = "gray40",
+      halign = .5, linetype = 1, r = unit(0, "pt"), width = unit(1, "npc"),
+      padding = margin(2, 0, 1, 0), margin = margin(0, 1, 3, 1),
+      hi.labels = "Summer", hi.family = "Bangers",
+      hi.fill = "firebrick", hi.box.col = "firebrick", hi.col = "white"
+    )
+  )
