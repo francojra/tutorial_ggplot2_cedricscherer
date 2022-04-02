@@ -54,4 +54,6 @@
 45. Criando múltiplas janelas do gráfico com uma variável;
 46. Permitir que os eixos vagueiem livres;
 47. Use facet_wrap com duas variáveis;
-48. 
+48. Modificando o estilo das faixas dos gráficos;
+49. Criando um painel com diferentes gráficos;
+50. 
