@@ -1068,7 +1068,10 @@ ggplot(chic, aes(x = date, y = temp)) +
   geom_point() +
   labs(x = "Year", y = "Temperature (°F)", color = NULL))
 
-## Para selecionar cores manualmente:
+# Selecionando cores manualmente: ----------------------------------------------------------------------------------------------------------
+
+# Usando paletas de cores qualitativas de outros pacotes: ----------------------------------------------------------------------------------
+
 
 ## Você pode selecionar seu próprio conjunto de cores e atribuir elas as suas variáveis 
 ## categóricas com a função scale_*_manual (o * pode ser color, colour ou fill). O número
@@ -1091,3 +1094,25 @@ ga + scale_color_brewer(palette = "Set1")
 ## Você pode explorar todos os esquemas de cores com a seguinte função:
 
 RColorBrewer::display.brewer.all()
+
+# Usando paletas de cores qualitativas de outros pacotes: ----------------------------------------------------------------------------------
+
+## Existem muitos pacotes que fornecem adicionais paletas de cores. Você pode usar o pacote
+## paletteer, uma colecção abrangente de paletas de cores em R que utiliza uma sintaxe 
+## consistente.
+
+## O pacote ggthemes permite o uso do Tableau colors. Tableau é um famoso software de visalização
+## com bem conhecidas paletas de cores.
+
+library(ggthemes)
+ga + scale_color_tableau()
+
+## O pacote ggsci promove paletas de cores para publicações científicas. Se você quer gráficos
+## com cores que podem ser publicados em jornais como Science e Nature. Escolha essas:
+
+library(ggsci)
+g1 <- ga + scale_color_aaas()
+g2 <- ga + scale_color_npg()
+
+library(patchwork)
+(g1 + g2) * theme(legend.position = "top")
