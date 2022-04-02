@@ -967,3 +967,57 @@ ggplot(chic, aes(x = date, y = temp)) +
       hi.fill = "firebrick", hi.box.col = "firebrick", hi.col = "white"
     )
   )
+
+# Criando um painel com diferentes gráficos ------------------------------------------------------------------------------------------------
+
+## Existem várias formas que os gráficos podem ser combinados. A abordagem mais fácil é usando
+## o pacote patchwork do Thomas Lin Pedersen.
+
+p1 <- ggplot(chic, aes(x = date, y = temp,
+                       color = season)) +
+        geom_point() +
+        geom_rug() +
+        labs(x = "Year", y = "Temperature (°F)")
+
+p2 <- ggplot(chic, aes(x = date, y = o3)) +
+        geom_line(color = "gray") +
+        geom_point(color = "darkorange2") +
+        labs(x = "Year", y = "Ozone")
+
+library(patchwork)
+p1 + p2
+
+## Nós podemos mudar a posição dividindo os gráficos. Note que os gráficos ficam
+## alinhados mesmo um apresentando legenda e o outro não.
+
+p1 / p2
+
+## Nós podemos deixar três gráficos alinhados.
+
+(g + p2) / p1
+
+## Alternativamente, o pacote cowplot do Claus Wilke promove funcionalidade para alinhar 
+## múltiplos gráficos (e muitas outras boas funcionalidades). Nesse caso ele alinha a 
+## legenda aos outros gráficos sem legenda.
+
+library(cowplot)
+plot_grid(plot_grid(g, p1), p2, ncol = 1)
+
+## Outro pacote usado é o gridExtra.
+
+library(gridExtra)
+grid.arrange(g, p1, p2,
+             layout_matrix = rbind(c(1, 2), c(3, 3)))
+
+## A mesma ideia de definir um layout pode ser usada com patchwork que permite criar 
+## composições complexas.
+
+layout <- "
+AABBBB#
+AACCDDE
+##CCDD#
+##CC###
+"
+
+p2 + p1 + p1 + g + p2 +
+  plot_layout(design = layout)
