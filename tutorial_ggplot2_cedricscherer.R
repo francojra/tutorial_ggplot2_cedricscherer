@@ -1021,3 +1021,15 @@ AACCDDE
 
 p2 + p1 + p1 + g + p2 +
   plot_layout(design = layout)
+
+# Trabalhando com cores --------------------------------------------------------------------------------------------------------------------
+
+## Para aplicações simples, trabalhar com cores no ggplot2 é fácil. Para aplicações mais
+## avançadas talvez seja necessário ter em mãos o livro do Hadley. Outra boa fonte é o 
+## R Cookbook e o color section in the R Graph Galery por Yan Holtz.
+
+## Existem duas principais diferenças quanto a cores no ggplot2. Ambos argumentos color e fill.
+## Elas podem ser assinadas para uso de cores simples e para variáveis com diferentes categorias.
+
+
+
