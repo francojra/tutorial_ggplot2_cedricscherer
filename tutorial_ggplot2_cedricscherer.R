@@ -1031,5 +1031,18 @@ p2 + p1 + p1 + g + p2 +
 ## Existem duas principais diferenças quanto a cores no ggplot2. Ambos argumentos color e fill.
 ## Elas podem ser assinadas para uso de cores simples e para variáveis com diferentes categorias.
 
+# Especificando cores simples --------------------------------------------------------------------------------------------------------------
 
+## Nós podemos especificar uma cor na camada geom.
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "steelblue", size = 2) +
+  labs(x = "Year", y = "Temperature (°F)")
+
+## Nós também podemos definir uma cor (col) e um preenchimento (fill) para a geometria do gráfico.
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(shape = 21, size = 2, stroke = 1,
+             color = "#3cc08f", fill = "#c08f3c") +
+  labs(x = "Year", y = "Temperature (°F)")
 
