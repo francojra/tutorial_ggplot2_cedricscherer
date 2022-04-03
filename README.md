@@ -56,4 +56,13 @@
 47. Use facet_wrap com duas variáveis;
 48. Modificando o estilo das faixas dos gráficos;
 49. Criando um painel com diferentes gráficos;
-50. 
+50. Trabalhando com cores;
+51. Especificando cores simples;
+52. Atribuindo cores as variáveis;
+53. Variáveis qualitativas;
+54. Selecionando cores manualmente;
+55. Usando paletas de cores qualitativas de outros pacotes;
+56. Utilizar paleta de cores pré-estabelecidas;
+57. Usando paletas de cores qualitativas de outros pacotes;
+58. Variáveis quantitativas;
+59. Estabelecendo esquema de cores sequenciais manualmente.
