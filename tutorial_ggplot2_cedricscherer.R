@@ -1145,3 +1145,19 @@ gb + scale_color_gradient()
 mid <- mean(chic$temp)  ## midpoint
 
 gb + scale_color_gradient2(midpoint = mid)
+
+# Estabelecendo esquema de cores sequenciais manualmente: ----------------------------------------------------------------------------------
+
+## Você pode manualmente estabelecer cores sequenciais escolhendo algumas paletas via
+## scale_*_gradient().
+
+gb + scale_color_gradient(low = "darkkhaki",
+                          high = "darkgreen")
+
+## Dados de temperatura geralmente apresentam distribuição normal, sendo mais interessante
+## usar cores divergentes do que sequenciais. Para cores divergentes, você pode usar a função
+## scale_*_divergent2().
+
+gb + scale_color_gradient2(midpoint = mid, low = "#dd8a0b",
+                           mid = "grey92", high = "#32a676")
+
