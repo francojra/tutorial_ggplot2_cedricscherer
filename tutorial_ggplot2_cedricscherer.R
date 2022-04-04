@@ -1176,6 +1176,7 @@ p3 <- gb + scale_color_viridis_c(option = "plasma") + ggtitle("'plasma'")
 p4 <- gb + scale_color_viridis_c(option = "cividis") + ggtitle("'cividis'")
 
 library(patchwork)
+
 (p1 + p2 + p3 + p4) * theme(legend.position = "bottom")
 
 ## Também é possível usar a paleta de cores viridis para variáveis categóricas discretas.
@@ -1209,3 +1210,23 @@ g1 <- gb + scale_color_scico(palette = "berlin")
 g2 <- gb + scale_color_scico(palette = "hawaii", direction = -1)
 
 (g1 + g2) * theme(legend.position = "bottom")
+
+# Modificações posteriores das paletas de cores --------------------------------------------------------------------------------------------
+
+## Desde a última versão do ggplot2, nós podemos modiicar a camada aesthetics após os dados
+## terem sido mapeados. O uso do argumento after_scale() permite fazer essa modificação posterior.
+
+## Muitas vezes o ggplot2 não permite adicionar apenas uma escala de cor ou preenchimento. Veja
+## o seguinte exemplo do uso de invert_color() do pacote ggdark.
+
+library(ggdark)
+
+ggplot(chic, aes(date, temp, color = temp)) +
+  geom_point(size = 5) +
+  geom_point(aes(color = temp,
+                 color = after_scale(invert_color(color))),
+             size = 2) +
+  scale_color_scico(palette = "hawaii", guide = "none") +
+  labs(x = "Year", y = "Temperature (°F)")
+
+## Mudando o esquema de cores depois
