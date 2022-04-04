@@ -1276,3 +1276,30 @@ ggplot(chic, aes(x = date, y = temp, color = season)) +
   ggtitle("Ups and Downs of Chicago's Daily Temperatures") +
   theme_economist() +
   scale_color_economist(name = NULL)
+
+## Um outro exemplo é o esilo Tufte, um tema minimalista baseado no livro 'The Visual Display 
+## of Quantitative Information' do Edward Tufte. Este é o livro que popularizou o gráfico de Minard 
+## que retrata a marcha de Napoleão sobre a Rússia como um dos melhores desenhos estatísticos 
+## já criados.
+
+## Os gráficos de Tufte tornaram-se famosos devido ao purismo no seu estilo. 
+
+library(dplyr)
+chic_2000 <- filter(chic, year == 2000)
+
+ggplot(chic_2000, aes(x = temp, y = o3)) +
+  geom_point() +
+  labs(x = "Temperature (°F)", y = "Ozone") +
+  ggtitle("Temperature and Ozone Levels During the Year 2000 in Chicago") +
+  theme_tufte()
+
+## Um outro pacote minimalista com modernos temas é o hrbrthemes, pacote desenvolvido por 
+## Bob Rudis, com vários light mas também dark temas.
+
+library(hrbrthemes)
+
+ggplot(chic, aes(x = temp, y = o3)) +
+  geom_point(aes(color = dewpoint), show.legend = FALSE) +
+  labs(x = "Temperature (°F)", y = "Ozone") +
+  ggtitle("Temperature and Ozone Levels in Chicago") +
+  theme_ft_rc()
