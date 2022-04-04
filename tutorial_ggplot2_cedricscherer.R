@@ -1068,9 +1068,9 @@ ggplot(chic, aes(x = date, y = temp)) +
   geom_point() +
   labs(x = "Year", y = "Temperature (°F)", color = NULL))
 
-# Selecionando cores manualmente: ----------------------------------------------------------------------------------------------------------
+# Selecionando cores manualmente ----------------------------------------------------------------------------------------------------------
 
-# Usando paletas de cores qualitativas de outros pacotes: ----------------------------------------------------------------------------------
+# Usando paletas de cores qualitativas de outros pacotes ----------------------------------------------------------------------------------
 
 
 ## Você pode selecionar seu próprio conjunto de cores e atribuir elas as suas variáveis 
@@ -1082,7 +1082,7 @@ ga + scale_color_manual(values = c("dodgerblue4",
                                    "darkorchid3",
                                    "goldenrod1"))
 
-# Utilizar paleta de cores pré-estabelecidas: ----------------------------------------------------------------------------------------------
+# Utilizar paleta de cores pré-estabelecidas ----------------------------------------------------------------------------------------------
 
 ## O ColorBrewer Palettes é um ferramenta online popular para selecionar esquemas de cores.
 ## Os doferentes conjuntos de cores tem sido desenhados para produzir atrativos esquemas de cores
@@ -1095,7 +1095,7 @@ ga + scale_color_brewer(palette = "Set1")
 
 RColorBrewer::display.brewer.all()
 
-# Usando paletas de cores qualitativas de outros pacotes: ----------------------------------------------------------------------------------
+# Usando paletas de cores qualitativas de outros pacotes ----------------------------------------------------------------------------------
 
 ## Existem muitos pacotes que fornecem adicionais paletas de cores. Você pode usar o pacote
 ## paletteer, uma colecção abrangente de paletas de cores em R que utiliza uma sintaxe 
@@ -1146,7 +1146,7 @@ mid <- mean(chic$temp)  ## midpoint
 
 gb + scale_color_gradient2(midpoint = mid)
 
-# Estabelecendo esquema de cores sequenciais manualmente: ----------------------------------------------------------------------------------
+# Estabelecendo esquema de cores sequenciais manualmente ----------------------------------------------------------------------------------
 
 ## Você pode manualmente estabelecer cores sequenciais escolhendo algumas paletas via
 ## scale_*_gradient().
@@ -1161,3 +1161,23 @@ gb + scale_color_gradient(low = "darkkhaki",
 gb + scale_color_gradient2(midpoint = mid, low = "#dd8a0b",
                            mid = "grey92", high = "#32a676")
 
+# Bela paleta de cores viridis -------------------------------------------------------------------------------------------------------------
+
+## A paleta viridis não apenas faz gráficos bonitos, mas também mais fácil de ler por aqueles
+## que apresentam daltonismo, além de imprimirem bem na escala de cinza. Você pode testar como
+## seus gráficos ficarão com variadas cores para daltônicos usando o pacote dichromate.
+
+## As cores também vem do pacote ggplot2. Os seguites múltiplos painéis ilustram a cor padrão
+## viridis e outras três cores dessa paleta.
+
+p1 <- gb + scale_color_viridis_c() + ggtitle("'viridis' (default)")
+p2 <- gb + scale_color_viridis_c(option = "inferno") + ggtitle("'inferno'")
+p3 <- gb + scale_color_viridis_c(option = "plasma") + ggtitle("'plasma'")
+p4 <- gb + scale_color_viridis_c(option = "cividis") + ggtitle("'cividis'")
+
+library(patchwork)
+(p1 + p2 + p3 + p4) * theme(legend.position = "bottom")
+
+## Também é possível usar a paleta de cores viridis para variáveis categóricas discretas.
+
+ga + scale_color_viridis_d(guide = "none")
