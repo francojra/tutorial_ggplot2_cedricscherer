@@ -1229,4 +1229,24 @@ ggplot(chic, aes(date, temp, color = temp)) +
   scale_color_scico(palette = "hawaii", guide = "none") +
   labs(x = "Year", y = "Temperature (°F)")
 
-## Mudando o esquema de cores depois
+## Mudando o esquema de cores depois é especialmente divertido com os pacotes ggdark e colorspace,
+## nomeados como invert_color(), lighten(), darken() e desature(). Existe a possibilidade de você
+## combinar as funções. Nesse xemplo do boxplot tem ambos argumentos para fill e color.
+
+library(colorspace)
+
+ggplot(chic, aes(date, temp)) +
+  geom_boxplot(aes(color = season,
+                   fill = after_scale(desaturate(lighten(color, .6), .6))),
+               size = 1) +
+  scale_color_brewer(palette = "Dark2", guide = "none") +
+  labs(x = "Year", y = "Temperature (°F)")
+
+## Note que você precisa especificar a cor e/ou preenchimento no aes() do respectivo geom_*()
+## ou stat_*() para fazer o after_scale() trabalhar.
+
+## Isto parece um pouco complicado por agora - uma pessoa poderia simplesmente usar a escala 
+## de cor e de enchimento para ambos. Sim, isso é verdade, mas pense em casos de utilização 
+## em que necessita de várias escalas de cor e/ou de enchimento. Nesse caso, seria insensato 
+## ocupar a escala de enchimento com uma versão ligeiramente mais escura da paleta utilizada 
+## para a cor.
