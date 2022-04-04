@@ -1181,3 +1181,31 @@ library(patchwork)
 ## Também é possível usar a paleta de cores viridis para variáveis categóricas discretas.
 
 ga + scale_color_viridis_d(guide = "none")
+
+# Pacotes com paleta de cores quantitativas ------------------------------------------------------------------------------------------------
+
+## Muitos pacotes fornecem não apenas paleta de cores para variáveis categóricas, mas também
+## paletas de cores sequenciais, divergentes ou mesmo cíclicas. 
+
+## O pacote rcartocolors inclui o belo CARTOcolors e contém várias das minhas paletas mais 
+## utilizadas.
+
+#install.packages("rcartocolor")
+library(rcartocolor)
+
+g1 <- gb + scale_color_carto_c(palette = "BurgYl")
+g2 <- gb + scale_color_carto_c(palette = "Earth")
+
+(g1 + g2) * theme(legend.position = "bottom")
+
+## O pacote scico promove acesso a cores desenvolvidas por Fabio Crameri. Essas cores além de
+## bonitas e pouco usadas, são boas escolhas devido a serem cores perceptivelmente uniformes
+## e ordenadas. Em adição, ela trabalha para pessoas com problemas de visão e para escala de cinza.
+
+install.packages("scico")
+library(scico)
+
+g1 <- gb + scale_color_scico(palette = "berlin")
+g2 <- gb + scale_color_scico(palette = "hawaii", direction = -1)
+
+(g1 + g2) * theme(legend.position = "bottom")
