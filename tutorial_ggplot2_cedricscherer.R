@@ -1250,3 +1250,29 @@ ggplot(chic, aes(date, temp)) +
 ## em que necessita de várias escalas de cor e/ou de enchimento. Nesse caso, seria insensato 
 ## ocupar a escala de enchimento com uma versão ligeiramente mais escura da paleta utilizada 
 ## para a cor.
+
+# Trabalhando com temas --------------------------------------------------------------------------------------------------------------------
+
+# Mudando o estilo geral do gráfico --------------------------------------------------------------------------------------------------------
+
+## Você pode mudar toda a aparência do gráfico usando temas que vem inseridos no pacote ggplot2:
+
+## theme_gray(), theme_bw(), theme_classic(), them_dark(), theme_light(), theme_linedraw(),
+## theme_minimal(), theme_void().
+
+## Existem vários pacotes que oferecem adicionais temas, alguns apresentam diferentes paletas 
+## de cores. Como exemplo, Jeffrey Arnold tem criado o pacote ggthemes com vários temas customizados
+## imitando designs populares. Sem muitos códigos, você pode apenas adaptar diferentes estilos desse
+## pacote.
+
+## Aqu está um exemplo de estilo da revista The economist por usar theme_economist() 
+## e scale_color_economist().
+
+library(ggthemes)
+
+ggplot(chic, aes(x = date, y = temp, color = season)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)") +
+  ggtitle("Ups and Downs of Chicago's Daily Temperatures") +
+  theme_economist() +
+  scale_color_economist(name = NULL)
