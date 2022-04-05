@@ -1320,7 +1320,7 @@ g <- ggplot(chic, aes(x = date, y = temp)) +
 
 g + theme_bw(base_family = "serif")
 
-# Mudando o tamanho de todos os textos do gráficos -----------------------------------------------------------------------------------------
+# Mudando o tamanho de todos os textos do gráfico -----------------------------------------------------------------------------------------
 
 ## A função theme_*() tem várias outros argumentos como base_*. Você pode simplesmentes mudar
 ## o base_size se quer aumentar o tamanho dos textos do gráfico.
@@ -1342,7 +1342,7 @@ g + theme_bw(base_line_size = 2, base_rect_size = 2.5)
 
 ## Vamos modificar o tema padrão do theme_gray para obter nosso resultado:
 
-theme_custom <- function (base_size = 12, base_family = "Roboto Condensed") {
+theme_custom <- function(base_size = 12, base_family = "Roboto Condensed") {
   half_line <- base_size/2
   theme(
     line = element_line(color = "black", size = .5,
