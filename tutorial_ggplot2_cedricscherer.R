@@ -1458,5 +1458,19 @@ ggplot(chic, aes(x = date, y = temp, color = season)) +
 ## mudar todos os resultados dos seus gráficos em um estilo congruente e adaptado as suas
 ## necessidades (exe.: apresentações com fontes maiores e com os requerimentos dos jornais).
 
+# Atualizando o tema atual -----------------------------------------------------------------------------------------------------------------
 
+## Você também pode rapidamente estabelecer mudanças usando o theme_update():
+
+theme_custom <- theme_update(panel.background = element_rect(fill = "gray60"))
+
+ggplot(chic, aes(x = date, y = temp, color = season)) +
+  geom_point() + labs(x = "Year", y = "Temperature (°F)") + guides(color = FALSE)
+
+## Para nossos próximos exercícios, nós estamos usando um tema customizado com preenchimento
+## branco e sem as linhas menores do grid.
+
+theme_custom <- theme_update(panel.background = element_rect(fill = "white"),
+                             panel.grid.major = element_line(size = .5),
+                             panel.grid.minor = element_blank())
 
