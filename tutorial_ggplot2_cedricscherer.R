@@ -53,7 +53,6 @@ tibble::glimpse(chic)
 
 # O básico do ggplot2 ----------------------------------------------------------------------------------------------------------------------
 
-#library(ggplot2)
 library(tidyverse)
 
 ## De acordo com os elementos básicos, o ggplot necessita de três coisas essenciais para formar
@@ -1303,3 +1302,20 @@ ggplot(chic, aes(x = temp, y = o3)) +
   labs(x = "Temperature (°F)", y = "Ozone") +
   ggtitle("Temperature and Ozone Levels in Chicago") +
   theme_ft_rc()
+
+# Mudando a fonte de todos os textos do gráfico --------------------------------------------------------------------------------------------
+
+## É incrivelmente mais fácil mudar a fonte de todos os textos do gráfico de uma só vez. 
+## Todos os temas vem com um argumento chamado base_family:
+
+library(extrafont)
+#font_import()
+loadfonts(device = "win")
+windowsFonts()
+
+g <- ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "firebrick") +
+  labs(x = "Year", y = "Temperature (°F)",
+       title = "Temperatures in Chicago")
+
+g + theme_bw(base_family = "serif")
