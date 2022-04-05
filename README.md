@@ -65,4 +65,15 @@
 56. Utilizar paleta de cores pré-estabelecidas;
 57. Usando paletas de cores qualitativas de outros pacotes;
 58. Variáveis quantitativas;
-59. Estabelecendo esquema de cores sequenciais manualmente.
+59. Estabelecendo esquema de cores sequenciais manualmente;
+60. Bela paleta de cores viridis;
+61. Pacotes com paleta de cores quantitativas;
+62. Modificações posteriores das paletas de cores;
+63. Trabalhando com temas;
+64. Mudando o estilo geral do gráfico;
+65. Mudando a fonte de todos os textos do gráfico;
+66. Mudando o tamanho de todos os textos do gráfico;
+67. Mudando o tamanho de todas as linhas e elementos do retângulo;
+68. Criando seu próprio tema;
+69. Atualizando o tema atual;
+70. 
