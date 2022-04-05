@@ -1319,3 +1319,16 @@ g <- ggplot(chic, aes(x = date, y = temp)) +
        title = "Temperatures in Chicago")
 
 g + theme_bw(base_family = "serif")
+
+# Mudando o tamanho de todos os textos do gráficos -----------------------------------------------------------------------------------------
+
+## A função theme_*() tem várias outros argumentos como base_*. Você pode simplesmentes mudar
+## o base_size se quer aumentar o tamanho dos textos do gráfico.
+
+g + theme_bw(base_size = 30, base_family = "Roboto Condensed")
+
+# Mudando o tamanho de todas as linhas e elementos do retângulo ----------------------------------------------------------------------------
+
+## Similarmente, você pode mudar o tamanho dos elementos dos line e rect:
+
+g + theme_bw(base_line_size = 2, base_rect_size = 2.5)
