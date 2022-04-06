@@ -76,4 +76,8 @@
 67. Mudando o tamanho de todas as linhas e elementos do retângulo;
 68. Criando seu próprio tema;
 69. Atualizando o tema atual;
-70. 
+70. Trabalhando com linhas;
+71. Adicionando linhas horizontais e verticais ao gráfico;
+72. Adicionando uma linha dentro do gráfico;
+73. Adicionando linhas curvas e setas ao gráfico;
+74. 
