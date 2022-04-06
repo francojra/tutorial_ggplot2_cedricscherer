@@ -1530,3 +1530,29 @@ g +
   geom_segment(aes(x = 50, xend = 75,
                    y = 20, yend = 45),
                color = "purple", size = 2)
+
+# Adicionando linhas curvas e setas ao gráfico ---------------------------------------------------------------------------------------------
+
+## geom_curve() adiciona curvas e linhas retas, caso prefira:
+
+g +
+  geom_curve(aes(x = 0, y = 60, xend = 75, yend = 0),
+             size = 2, color = "tan") +
+  geom_curve(aes(x = 0, y = 60, xend = 75, yend = 0),
+             curvature = -0.7, angle = 45,
+             color = "darkgoldenrod1", size = 1) +
+  geom_curve(aes(x = 0, y = 60, xend = 75, yend = 0),
+             curvature = 0, size = 1.5)
+
+## O mesmo geom pode ser usado para desenhar setas:
+
+g +
+  geom_curve(aes(x = 0, y = 60, xend = 75, yend = 0),
+             size = 2, color = "tan",
+             arrow = arrow(length = unit(0.07, "npc"))) +
+  geom_curve(aes(x = 5, y = 55, xend = 70, yend = 5),
+             curvature = -0.7, angle = 45,
+             color = "darkgoldenrod1", size = 1,
+             arrow = arrow(length = unit(0.03, "npc"),
+                           type = "closed",
+                           ends = "both"))
