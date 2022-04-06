@@ -80,4 +80,5 @@
 71. Adicionando linhas horizontais e verticais ao gráfico;
 72. Adicionando uma linha dentro do gráfico;
 73. Adicionando linhas curvas e setas ao gráfico;
-74. 
+74. Trabalhando com texto;
+75. Adicionando rótulos aos seus dados;
