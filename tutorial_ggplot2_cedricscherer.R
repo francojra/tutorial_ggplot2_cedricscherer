@@ -1556,3 +1556,64 @@ g +
              arrow = arrow(length = unit(0.03, "npc"),
                            type = "closed",
                            ends = "both"))
+
+# Trabalhando com texto --------------------------------------------------------------------------------------------------------------------
+
+# Adicionando rótulos aos seus dados -------------------------------------------------------------------------------------------------------
+
+## Algumas vezes nós queremos rotular alguns pontos dos dados. Para evitar sobreposições entre
+## os rótulos, nós usamos apenas 1% dos dados originais, igualmente representados para as quatro
+## estações. Nós usamos o geom_label() que vem com o aesthetic chamado label.
+
+set.seed(2020)
+
+library(dplyr)
+sample <- chic %>%
+  dplyr::group_by(season) %>%
+  dplyr::sample_frac(0.01)
+
+## code without pipes:
+## sample <- sample_frac(group_by(chic, season), .01)
+
+ggplot(sample, aes(x = date, y = temp, color = season)) +
+  geom_point() +
+  geom_label(aes(label = season), hjust = .5, vjust = -.5) +
+  labs(x = "Year", y = "Temperature (°F)") +
+  xlim(as.Date(c('1997-01-01', '2000-12-31'))) +
+  ylim(c(0, 90)) +
+  theme(legend.position = "none")
+
+## Você pode usar geom_text() se não quiser as caixas em volta dos rótulos.
+
+## Um pacote que ajuda a evitar a sobreposição dos rótulos é o ggrepel, nós precisamos
+## apenas substituir geom_text() por geom_text_repel() e geom_label() por geom_label_repel().
+
+library(ggrepel)
+
+ggplot(sample, aes(x = date, y = temp, color = season)) +
+  geom_point() +
+  geom_label_repel(aes(label = season), fontface = "bold") +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(legend.position = "none")
+
+## Se quiser mudar a aparência das caixas, podemos usar o argumento fill no lugar do color,
+## e estabelecer uma cor branca para o texto.
+
+ggplot(sample, aes(x = date, y = temp)) +
+  geom_point(data = chic, size = .5) +
+  geom_point(aes(color = season), size = 1.5) +
+  geom_label_repel(aes(label = season, fill = season),
+                   color = "white", fontface = "bold",
+                   segment.color = "grey30") +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(legend.position = "none")
+
+## Aparência com texto puro:
+
+ggplot(sample, aes(x = date, y = temp)) +
+  geom_point(data = chic, size = .5) +
+  geom_point(aes(color = season), size = 1.5) +
+  geom_text_repel(aes(label = season, color = season), fontface = "bold",
+                   segment.color = "grey30") +
+  labs(x = "Year", y = "Temperature (°F)") +
+  theme(legend.position = "none")
