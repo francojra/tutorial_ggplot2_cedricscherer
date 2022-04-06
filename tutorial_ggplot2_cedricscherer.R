@@ -1474,3 +1474,38 @@ theme_custom <- theme_update(panel.background = element_rect(fill = "white"),
                              panel.grid.major = element_line(size = .5),
                              panel.grid.minor = element_blank())
 
+# Trabalhando com linhas -------------------------------------------------------------------------------------------------------------------
+
+# Adicionando linhas horizontais e verticais ao gráfico ------------------------------------------------------------------------------------
+
+## Você poderá querer destacar um determinado intervalo ou limiar que pode ser feito com uma
+## linha usando a função para coordenadas geom_hline() (para linhas horizontais) e geom_vline(
+## para linhas verticais.
+
+ggplot(chic, aes(x = date, y = temp, color = o3)) +
+  geom_point() +
+  geom_hline(yintercept = c(0, 73)) +
+  labs(x = "Year", y = "Temperature (°F)")
+
+g <- ggplot(chic, aes(x = temp, y = dewpoint)) +
+  geom_point(color = "dodgerblue", alpha = .5) +
+  labs(x = "Temperature (°F)", y = "Dewpoint")
+
+g +
+  geom_vline(xintercept = 50, size = 1.5,
+             color = "firebrick", linetype = "dashed") +
+  geom_hline(aes(yintercept = median(dewpoint)), size = 1.5,
+             color = "firebrick", linetype = "dashed")
+
+## Se você quiser adicionar uma linha com uma inclinação que não seja nem 0 nem 1, você
+## necessita usar geom_abline(). Esse por exemplo, é o caso de você querer adicionar uma
+## linha de regressão com os argumentos intercept e slope.
+
+reg <- lm(dewpoint ~ temp, data = chic)
+
+g +
+  geom_abline(intercept = coefficients(reg)[1],
+              slope = coefficients(reg)[2],
+              color = "darkorange2", size = 1.5) +
+  labs(title = paste0("y = ", round(coefficients(reg)[2], 2),
+                      " * x + ", round(coefficients(reg)[1], 2)))
