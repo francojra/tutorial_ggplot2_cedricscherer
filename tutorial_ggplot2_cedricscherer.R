@@ -1509,3 +1509,24 @@ g +
               color = "darkorange2", size = 1.5) +
   labs(title = paste0("y = ", round(coefficients(reg)[2], 2),
                       " * x + ", round(coefficients(reg)[1], 2)))
+
+# Adicionando uma linha dentro do gráfico --------------------------------------------------------------------------------------------------
+
+## A abordagem prévia sempre cobre todo intervalo do gráfico, mas algumas vezes nós podemos
+## querer destacar apenas uma área ou usar linhas para anotações. Nesse caso, usamos a função
+## geom_linerange().
+
+g +
+  ## vertical line
+  geom_linerange(aes(x = 50, ymin = 20, ymax = 55),
+                 color = "steelblue", size = 2) +
+  ## horizontal line
+  geom_linerange(aes(y = 0, xmin = -Inf, xmax = 25),
+                 color = "red", size = 1)
+
+## Você pode usar geom_segment() para desenhar um declive que difere de 0 e 1.
+
+g +
+  geom_segment(aes(x = 50, xend = 75,
+                   y = 20, yend = 45),
+               color = "purple", size = 2)
