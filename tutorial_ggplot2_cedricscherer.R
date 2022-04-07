@@ -1647,3 +1647,25 @@ g +
                 label = "This is a useful annotation"),
             stat = "unique", family = "mono",
             size = 7, color = "darkcyan")
+
+## Caso você use a função facets para seus dados, você pode encontrar um problema.
+## Talvez você possa querer incluir a anotação uma vez apenas.
+
+chic$season <- as.factor(chic$season)
+ann <- data.frame(
+  o3 = 30,
+  temp = 20,
+  season = factor("Summer", levels = levels(chic$season)),
+  label = "Here is enough space\nfor some annotations."
+)
+
+g <-
+  ggplot(chic, aes(x = o3, y = temp)) +
+  geom_point() +
+  labs(x = "Ozone", y = "Temperature (°F)")
+
+g +
+  geom_text(data = ann, aes(label = label),
+            size = 7, fontface = "bold",
+            family = "Roboto Condensed") +
+  facet_wrap(~season)
