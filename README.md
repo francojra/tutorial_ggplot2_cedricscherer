@@ -82,3 +82,4 @@
 73. Adicionando linhas curvas e setas ao gráfico;
 74. Trabalhando com texto;
 75. Adicionando rótulos aos seus dados;
+76. Adicionando anotações de texto;
