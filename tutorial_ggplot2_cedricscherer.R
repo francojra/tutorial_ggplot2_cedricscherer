@@ -1617,3 +1617,33 @@ ggplot(sample, aes(x = date, y = temp)) +
                    segment.color = "grey30") +
   labs(x = "Year", y = "Temperature (°F)") +
   theme(legend.position = "none")
+
+# Adicionando anotações de texto -----------------------------------------------------------------------------------------------------------
+
+## Existem várias formas de adicionar textos ao gráfico. Nós podemos novamente usar
+## geom_text() ou geom_label().
+
+g <-
+  ggplot(chic, aes(x = temp, y = dewpoint)) +
+  geom_point(alpha = .5) +
+  labs(x = "Temperature (°F)", y = "Dewpoint")
+
+g +
+  geom_text(aes(x = 25, y = 60,
+                label = "This is a useful annotation"))
+
+## Entretanto, o ggplot tem desenhado textos que representam 1,461 rótulos e você
+## pode ver apenas um! Você resolve isso estabelecendo o argumento stat como 'unique'.
+
+g +
+  geom_text(aes(x = 25, y = 60,
+                label = "This is a useful annotation"),
+            stat = "unique")
+
+## Da mesma forma, você pode mudar as propriedades do texto.
+
+g +
+  geom_text(aes(x = 25, y = 60,
+                label = "This is a useful annotation"),
+            stat = "unique", family = "mono",
+            size = 7, color = "darkcyan")
