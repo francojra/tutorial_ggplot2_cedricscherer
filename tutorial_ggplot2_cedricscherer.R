@@ -1697,3 +1697,22 @@ g +
             size = 5, fontface = "bold") +
   scale_y_continuous(limits = c(NA, 100)) +
   facet_wrap(~season, scales = "free_x")
+
+## Entretanto, existe uma simples abordagem (em termos de fixar as coordenadas)- mas isso também
+## leva em conta um entendimento do código. O pacote grid em combinação com o annotation_custom()
+## do ggplot2 permite você especificar a localização baseado em coordenadas, onde zero é baixo e
+## 1 é alto. grobTrre() cria um objeto de grid gráfico e textGrob cria o texto gráfico. O valor disso
+## fica evidente quando você tem múltiplos gráficos com diferentes escalas.
+
+library(grid)
+
+my_grob <- grobTree(textGrob("This text stays in place!",
+                             x = .1, y = .9, hjust = 0,
+                             gp = gpar(col = "black",
+                                       fontsize = 15,
+                                       fontface = "bold")))
+
+g +
+  annotation_custom(my_grob) +
+  facet_wrap(~season, scales = "free_x") +
+  scale_y_continuous(limits = c(NA, 100))
