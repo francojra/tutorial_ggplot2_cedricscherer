@@ -1669,3 +1669,31 @@ g +
             size = 7, fontface = "bold",
             family = "Roboto Condensed") +
   facet_wrap(~season)
+
+## Um outro desafio com uso do facets é que seu texto pode aparecer cortado quando
+## coloca as escalas livres.
+
+g +
+  geom_text(aes(x = 23, y = 97,
+                label = "This is not a useful annotation"),
+            size = 5, fontface = "bold") +
+  scale_y_continuous(limits = c(NA, 100)) +
+  facet_wrap(~season, scales = "free_x")
+
+## Uma solução é calcular o ponto médio do eixo x...
+
+(ann <-
+  chic %>%
+  group_by(season) %>%
+  summarize(o3 = min(o3, na.rm = TRUE) +
+              (max(o3, na.rm = TRUE) - min(o3, na.rm = TRUE)) / 2))
+
+## ...e usar os dados agregados para fixar a localização do texto.
+
+g +
+  geom_text(data = ann,
+            aes(x = o3, y = 97,
+                label = "This is a useful annotation"),
+            size = 5, fontface = "bold") +
+  scale_y_continuous(limits = c(NA, 100)) +
+  facet_wrap(~season, scales = "free_x")
