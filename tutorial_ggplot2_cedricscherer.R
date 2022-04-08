@@ -1750,3 +1750,15 @@ g +
                 color = "white", fill = "steelblue",
                 label.color = "red", hjust = 0, vjust = 0,
                 family = "Playfair Display")
+
+## Outro geom do pacote ggtext é o geom_textbox(). Esse geom permite o encadeamento de textos 
+## que é muito útil para anotações mais longas, tais como legendas e caixas com informações.
+
+lab_long <- "**Lorem ipsum dolor**<br><i style='font-size:8pt;color:red;'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</i>"
+
+g +
+  geom_textbox(aes(x = 40, y = 10, label = lab_long),
+               width = unit(16, "lines"), stat = "unique")
+
+## Note que não é possível nem rotacionar a caixa de texto (sempre horizontal) nem alterar 
+## a justificação do texto (sempre alinhado à esquerda).
