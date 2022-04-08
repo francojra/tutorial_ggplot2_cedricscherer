@@ -1803,3 +1803,13 @@ ggplot(chic, aes(x = date, y = temp, color = o3)) +
 ## Note que isso irá funcionar apenas com dados contínuos. Se você quiser reverter dados
 ## discretos use fct_rev() do pacote forcats.
 
+# Transformando um eixo --------------------------------------------------------------------------------------------------------------------
+
+## Você pode transformar um padrão linear dos eixos usando, por exemplo, scale_y_log10() ou 
+## scale_y_sqrt(). Como exemplo, aqui está um eixo log10-transformado (que neste caso 
+## introduz NA's, portanto tenha cuidado).
+
+ggplot(chic, aes(x = date, y = temp, color = o3)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)") +
+  scale_y_log10(lim = c(0.1, 100))
