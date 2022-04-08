@@ -83,3 +83,9 @@
 74. Trabalhando com texto;
 75. Adicionando rótulos aos seus dados;
 76. Adicionando anotações de texto;
+77. Usando Markdown e HTLM Rendering para anotações;
+78. Trabalhando com coordenadas;
+79. Virar o gráfico;
+80. Ajustando um eixo;
+81. Invertendo um eixo;
+82. Transformando um eixo;
