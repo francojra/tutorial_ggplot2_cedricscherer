@@ -1716,3 +1716,37 @@ g +
   annotation_custom(my_grob) +
   facet_wrap(~season, scales = "free_x") +
   scale_y_continuous(limits = c(NA, 100))
+
+# Usando Markdown e HTLM Rendering para anotações ------------------------------------------------------------------------------------------
+
+## Novamente vamos usar o pacote ggtext do Claus Wilke que foi desenhado para melhorar a renderização
+## de texto com ggplot2. O ggtext define dois novos elementos em theme, o element_markdown() e 
+## element_textbox(). O pacote também promove adicional geoms, o geom_richtext() é um substituto
+## do geom_text() e geom_label() e renderiza o texto como Markdown.
+
+library(ggtext)
+
+lab_md <- "This plot shows **temperature** in *°F* versus **ozone level** in *ppm*"
+
+g +
+  geom_richtext(aes(x = 35, y = 3, label = lab_md),
+                stat = "unique")
+
+##...ou HTML
+
+lab_html <- "This plot shows <b style='color:red;'>temperature</b> in <i>°F</i> versus <b style='color:blue;'>ozone level</b> in <i>ppm</i>"
+
+g +
+  geom_richtext(aes(x = 33, y = 3, label = lab_html),
+                stat = "unique")
+
+## O geom_richtext() vem com muitos detalhes que podem ser modificados, como o ângulo (o qual)
+## não é possível com o padrão geom_text() e geom_label()), propriedades ca caixa e propriedades
+## do texto.
+
+g +
+  geom_richtext(aes(x = 10, y = 25, label = lab_md),
+                stat = "unique", angle = 30,
+                color = "white", fill = "steelblue",
+                label.color = "red", hjust = 0, vjust = 0,
+                family = "Playfair Display")
