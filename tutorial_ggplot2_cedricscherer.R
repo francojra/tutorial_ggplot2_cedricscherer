@@ -1762,3 +1762,30 @@ g +
 
 ## Note que não é possível nem rotacionar a caixa de texto (sempre horizontal) nem alterar 
 ## a justificação do texto (sempre alinhado à esquerda).
+
+# Trabalhando com coordenadas --------------------------------------------------------------------------------------------------------------
+
+# Virar o gráfico --------------------------------------------------------------------------------------------------------------------------
+
+## É bem fácil rotacionar o gráfico. Aqui eu tenho adicionado o coord_flip, uma funçao usada
+## para rotacionar o gráfico. Isso faz mais sentido quando usamos dados categóricos no eixo x,
+## como em gráficos de barras e boxplot.
+
+ggplot(chic, aes(x = season, y = o3)) +
+  geom_boxplot(fill = "indianred") +
+  labs(x = "Season", y = "Ozone") +
+  coord_flip()
+
+# Ajustando um eixo ------------------------------------------------------------------------------------------------------------------------
+
+## Você pode ajustar a proporção do sistema de coordenada cartesiana e literalmente forçar uma 
+## representação física das unidades ao longo dos eixos x e y.
+
+ggplot(chic, aes(x = temp, y = o3)) +
+  geom_point() +
+  labs(x = "Temperature (°F)", y = "Ozone Level") +
+  scale_x_continuous(breaks = seq(0, 80, by = 20)) +
+  coord_fixed(ratio = 1)
+
+## Desta forma, pode-se assegurar não só um comprimento fixo do degrau nos eixos, mas também 
+## que o gráfico exportado tenha o aspecto esperado.
