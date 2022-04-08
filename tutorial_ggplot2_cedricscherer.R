@@ -1789,3 +1789,17 @@ ggplot(chic, aes(x = temp, y = o3)) +
 
 ## Desta forma, pode-se assegurar não só um comprimento fixo do degrau nos eixos, mas também 
 ## que o gráfico exportado tenha o aspecto esperado.
+
+# Invertendo um eixo -----------------------------------------------------------------------------------------------------------------------
+
+## Você pode reverter a ordem dos valores dos eixos x e y usando scale_x_reverse() ou
+## scale_y_reverse(), respectivamente:
+
+ggplot(chic, aes(x = date, y = temp, color = o3)) +
+  geom_point() +
+  labs(x = "Year", y = "Temperature (°F)") +
+  scale_y_reverse()
+
+## Note que isso irá funcionar apenas com dados contínuos. Se você quiser reverter dados
+## discretos use fct_rev() do pacote forcats.
+
