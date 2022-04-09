@@ -1953,3 +1953,73 @@ ggplot(chic, aes(x = date, y = temp, color = season)) +
   geom_point(show.legend = FALSE) +
   geom_rug(sides = "r", alpha = .3, show.legend = FALSE) +
   labs(x = "Year", y = "Temperature (°F)")
+
+# Criando uma matriz de correlação ---------------------------------------------------------------------------------------------------------
+
+## Existem vários pacotes que permitem criar matrizes de correlação, alguns usam a estrutura
+## do ggplot2. Vou mostrar como desenhar uma matriz sem pacotes adicionais.
+
+## O primeiro passo é criar uma matriz de correlação. Aqui nós usamos o pacote corrr que trabalha
+## bem com códigos pipe, mas existem muitos outros pacotes. Nós estamos utilizando o Pearson porque
+## todas as variáveis são normalmente distribuídas (mas você pode considerar Speraman se seus dados
+## seguem outro padrão). Note que como matriz de correlação tem informação redundante, nós definimos
+## metade dela para NA.
+
+corm <-
+  chic %>%
+  select(death, temp, dewpoint, pm10, o3) %>%
+  corrr::correlate(diagonal = 1) %>%
+  corrr::shave(upper = FALSE)
+
+## Agora nós colocamos o resultado da matriz em formato long usando a função pivot_long()
+## do pacote tidyr. Nós também diretamente formatamos os rótulos e colocamos citações vazias
+## para o triângulo superior. Note que eu usei sprintf() para assegurar que os rótulos sempre
+## mostrem dois dígitos.
+
+corm <- corm %>%
+  pivot_longer(
+    cols = -term,
+    names_to = "colname",
+    values_to = "corr"
+  ) %>%
+  mutate(
+    rowname = fct_inorder(term),
+    colname = fct_inorder(colname),
+    label = ifelse(is.na(corr), "", sprintf("%1.2f", corr))
+  ) 
+
+## Para construir o gráfico nós iremos usar o geom_tile() para o heatmap e geom_text()
+## para acrescentar os rótulos.
+
+ggplot(corm, aes(rowname, fct_rev(colname),
+                 fill = corr)) +
+  geom_tile() +
+  geom_text(aes(label = label)) +
+  coord_fixed() +
+  labs(x = NULL, y = NULL)
+
+## Eu gosto de ter uma paleta de cores divergentes. Também é importante que as escalas estejam
+## centralizadas no valor de zero, com o branco indicando os valores perdidos. Também prefiro
+## o gráfico sem linhas de grid e sem forro em volta do heatmap. Para os rótulos, as cores devem
+## variar de acordo com o preenchimento, e assim permitir o contraste.
+
+ggplot(corm, aes(rowname, fct_rev(colname),
+                 fill = corr)) +
+  geom_tile() +
+  geom_text(aes(
+    label = label,
+    color = abs(corr) < .75
+  )) +
+  coord_fixed(expand = FALSE) +
+  scale_color_manual(
+    values = c("white", "black"),
+    guide = "none"
+  ) +
+  scale_fill_distiller(
+    palette = "PuOr", na.value = "white",
+    direction = 1, limits = c(-1, 1),
+    name = "Pearson\nCorrelation:"
+  ) +
+  labs(x = NULL, y = NULL) +
+  theme(panel.border = element_rect(color = NA, fill = NA),
+        legend.position = c(.85, .8))
