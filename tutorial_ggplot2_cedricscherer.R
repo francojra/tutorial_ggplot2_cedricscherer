@@ -1903,3 +1903,23 @@ g + geom_jitter(width = .3, alpha = .5)
 ## para mostrar onde você tem a maioria dos dados, são bastante úteis para visualização.
 
 g + geom_violin(fill = "gray80", size = 1, alpha = .5)
+
+# Alternativa 4: combinando gráfico de violino com jitter ----------------------------------------------------------------------------------
+
+## Nós podemos combinar a densidade dos dados com jitter.
+
+g + geom_violin(fill = "gray80", size = 1, alpha = .5) +
+    geom_jitter(alpha = .25, width = .3) +
+    coord_flip()
+
+## O pacote ggforce promove funções onde o jitter se ajusta ao tamanho da densidade do violino.
+## Isso torna o jitter mais atrativo visualmente. A função usada é o geom_sina().
+
+install.packages("ggforce")
+library(ggforce)
+
+library(ggforce)
+
+g + geom_violin(fill = "gray80", size = 1, alpha = .5) +
+    geom_sina(alpha = .25) +
+    coord_flip()
