@@ -1856,3 +1856,25 @@ ggplot(chic_sum, aes(x = "", y = rel)) +
   scale_fill_brewer(palette = "Set1", name = "Season:") +
   theme(axis.ticks = element_blank(),
         panel.grid = element_blank())
+
+# Trabalhando com tipos de gráficos --------------------------------------------------------------------------------------------------------
+
+# Alternativas ao boxplot ------------------------------------------------------------------------------------------------------------------
+
+## Boxplots são ótimos, mas eles podem parecer incrivelmente chatos. Mesmo se você usar bons
+## boxplots, lembre-se que algumas pessoas podem nunca ter visto um box e não conseguir compreender
+## o gráfico.
+
+## Existem alternativas, mas antes vamos desenhar um gráfico boxplot comum:
+
+g <-
+  ggplot(chic, aes(x = season, y = o3,
+                   color = season)) +
+    labs(x = "Season", y = "Ozone") +
+    scale_color_brewer(palette = "Dark2", guide = "none")
+
+g + geom_boxplot()
+
+# Alternativa 1: gráfico de pontos ---------------------------------------------------------------------------------------------------------
+
+
