@@ -1844,3 +1844,15 @@ ggplot(chic_sum, aes(x = "", y = rel)) +
   scale_fill_brewer(palette = "Set1", name = "Season:") +
   theme(axis.ticks = element_blank(),
         panel.grid = element_blank())
+
+## Sugiro que se olhe sempre também para o resultado do mesmo código num sistema de 
+## coordenadas cartesianas, que é o padrão, para entender a lógica por trás do coord_polar
+## e theta:
+
+ggplot(chic_sum, aes(x = "", y = rel)) +
+  geom_col(aes(fill = season), width = 1, color = NA) +
+  labs(x = "", y = "Proportion of Days Exceeding\nthe Median Ozone Level") +
+  #coord_polar(theta = "y") +
+  scale_fill_brewer(palette = "Set1", name = "Season:") +
+  theme(axis.ticks = element_blank(),
+        panel.grid = element_blank())
