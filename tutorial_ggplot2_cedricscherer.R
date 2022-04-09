@@ -1923,3 +1923,14 @@ library(ggforce)
 g + geom_violin(fill = "gray80", size = 1, alpha = .5) +
     geom_sina(alpha = .25) +
     coord_flip()
+
+# Gráfico 5: combinando gráficos de violino com boxplot ------------------------------------------------------------------------------------
+
+## Para permitir uma estimativa fácil dos quantis, podemos adicionar boxplot dentro dos violinos
+## para indicar 25%-quartil, mediana e 75%-quartil:
+
+g + geom_violin(aes(fill = season), size = 1, alpha = .5) +
+    geom_boxplot(outlier.alpha = 0, coef = 0, ## coef = 0 retira as caudas do boxplot
+                 color = "gray40", width = .2) +
+    scale_fill_brewer(palette = "Dark2", guide = "none") +
+    coord_flip()
