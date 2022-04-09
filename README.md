@@ -89,3 +89,10 @@
 80. Ajustando um eixo;
 81. Invertendo um eixo;
 82. Transformando um eixo;
+83. Gráfico circular;
+84. Trabalhando com tipos de gráficos;
+85. Alternativas ao boxplot:
+- Alternativa 1: gráfico de pontos;
+- Alternativa 2: jitter (dispersar) os pontos;
+- Alternativa 3: gráficos de violino;
+- Alternativa 4: combinando gráfico de violino com jitter;
