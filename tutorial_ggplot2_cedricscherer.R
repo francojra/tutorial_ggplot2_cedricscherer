@@ -1934,3 +1934,22 @@ g + geom_violin(aes(fill = season), size = 1, alpha = .5) +
                  color = "gray40", width = .2) +
     scale_fill_brewer(palette = "Dark2", guide = "none") +
     coord_flip()
+
+# Criando uma representação 'Rug' para um gráfico --------------------------------------------------------------------------------------------
+
+## O 'rug' representa os dados de uma variável quantitativa, são dispostos como marcações ao
+## longo dos eixos. Na maioria dos casos, é usado em adição aos gráficos de dispersão ou heatmaps
+## para visualizar a distribuição geral de uma ou ambas as variáveis.
+
+ggplot(chic, aes(x = date, y = temp,
+                 color = season)) +
+  geom_point(show.legend = FALSE) +
+  geom_rug(show.legend = FALSE) +
+  labs(x = "Year", y = "Temperature (°F)")
+
+## Para melhor visualização, você pode escolher o lado direito para mostrar as marcações.
+
+ggplot(chic, aes(x = date, y = temp, color = season)) +
+  geom_point(show.legend = FALSE) +
+  geom_rug(sides = "r", alpha = .3, show.legend = FALSE) +
+  labs(x = "Year", y = "Temperature (°F)")
