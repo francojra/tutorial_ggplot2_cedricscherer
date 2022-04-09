@@ -1813,3 +1813,34 @@ ggplot(chic, aes(x = date, y = temp, color = o3)) +
   geom_point() +
   labs(x = "Year", y = "Temperature (°F)") +
   scale_y_log10(lim = c(0.1, 100))
+
+# Gráfico circular -------------------------------------------------------------------------------------------------------------------------
+
+## É possível fazer um gráfico circular usando o coord_polar().
+
+chic %>%
+  dplyr::group_by(season) %>%
+  dplyr::summarize(o3 = median(o3)) %>%
+  ggplot(aes(x = season, y = o3)) +
+    geom_col(aes(fill = season), color = NA) +
+    labs(x = "", y = "Median Ozone Level") +
+    coord_polar() +
+    guides(fill = FALSE)
+
+## Esse sistema de coordenadas também permite desenhar um gráfico de pizza.
+
+chic_sum <-
+  chic %>%
+  dplyr::mutate(o3_avg = median(o3)) %>%
+  dplyr::filter(o3 > o3_avg) %>%
+  dplyr::mutate(n_all = n()) %>%
+  dplyr::group_by(season) %>%
+  dplyr::summarize(rel = n() / unique(n_all))
+
+ggplot(chic_sum, aes(x = "", y = rel)) +
+  geom_col(aes(fill = season), width = 1, color = NA) +
+  labs(x = "", y = "Proportion of Days Exceeding\nthe Median Ozone Level") +
+  coord_polar(theta = "y") +
+  scale_fill_brewer(palette = "Set1", name = "Season:") +
+  theme(axis.ticks = element_blank(),
+        panel.grid = element_blank())
