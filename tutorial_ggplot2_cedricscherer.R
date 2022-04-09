@@ -1896,3 +1896,10 @@ g + geom_point(alpha = .1)
 ## pode levar a uma má interpretação dos dados.
 
 g + geom_jitter(width = .3, alpha = .5)
+
+# Alternativa 3: gráficos de violino -------------------------------------------------------------------------------------------------------
+
+## São gráficos similares ao boxplot, com exceção de você estar usando a densidade de Kernel
+## para mostrar onde você tem a maioria dos dados, são bastante úteis para visualização.
+
+g + geom_violin(fill = "gray80", size = 1, alpha = .5)
