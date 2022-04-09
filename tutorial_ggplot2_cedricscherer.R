@@ -1877,4 +1877,22 @@ g + geom_boxplot()
 
 # Alternativa 1: gráfico de pontos ---------------------------------------------------------------------------------------------------------
 
+## Vamos apenas plotar os pontos do conjunto de dados brutos:
 
+g + geom_point()
+
+## Esse gráfico de pontos além de pouco elegante é pouco informativo. Para melhorar a aparência
+## podemos adicionar transparência a alguns pontos sobrepostos.
+
+g + geom_point(alpha = .1)
+
+## Entretanto, mesmo estabelecendo a transparência alguns pontos permanecem sobrepostos e
+## extremos valores estão invisíveis.
+
+# Alternativa 2: jitter (dispersar) os pontos ----------------------------------------------------------------------------------------------
+
+## Tente adicionar um pouco de jitter aos dados. Eu gosto dessa visualização, mas tome cuidado
+## ao adicionar jittering porque você pode propositalmente adicionar ruído aos seus dados e isso
+## pode levar a uma má interpretação dos dados.
+
+g + geom_jitter(width = .3, alpha = .5)
