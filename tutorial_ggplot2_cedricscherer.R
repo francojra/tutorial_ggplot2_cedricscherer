@@ -2023,3 +2023,17 @@ ggplot(corm, aes(rowname, fct_rev(colname),
   labs(x = NULL, y = NULL) +
   theme(panel.border = element_rect(color = NA, fill = NA),
         legend.position = c(.85, .8))
+
+# Criando um gráfico de contorno -----------------------------------------------------------------------------------------------------------
+
+## Gráficos de contornos são boas formas de mostrar limiares de valores. Podemos utiliza-los para
+## armazenar dados, mostrando a densidade das observações.
+
+ggplot(chic, aes(temp, o3)) +
+  geom_density_2d() +
+  labs(x = "Temperature (°F)", x = "Ozone Level")
+
+ggplot(chic, aes(temp, o3)) +
+  geom_density_2d_filled(show.legend = FALSE) +
+  coord_cartesian(expand = FALSE) +
+  labs(x = "Temperature (°F)", x = "Ozone Level")
