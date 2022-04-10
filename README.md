@@ -96,3 +96,7 @@
 - Alternativa 2: jitter (dispersar) os pontos;
 - Alternativa 3: gráficos de violino;
 - Alternativa 4: combinando gráfico de violino com jitter;
+- Alternativa 5: combinando gráficos de violino com boxplot.
+86. Criando uma representação 'Rug' para um gráfico;
+87. Criando uma matriz de correlação;
+88. Criando um gráfico de contorno;
