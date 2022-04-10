@@ -2217,3 +2217,12 @@ ggplot(chic, aes(x = date, y = temp)) +
   stat_smooth() +
   geom_point(color = "gray40", alpha = .5)
 
+# Adicionando um ajuste linear -------------------------------------------------------------------------------------------------------------
+
+## Apesar do padrão ser loess e gam, é fácil adicionar o método linear.
+
+ggplot(chic, aes(x = temp, y = death)) +
+   labs(x = "Temperature (°F)", y = "Deaths") +
+   stat_smooth(method = "lm", se = FALSE,
+               color = "firebrick", size = 1.3) +
+   geom_point(color = "gray40", alpha = .5)
