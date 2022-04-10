@@ -2074,3 +2074,44 @@ g + geom_tile(aes(fill = Dewpoint)) +
 g + geom_tile(aes(fill = Dewpoint)) +
     stat_contour(color = "white", size = .7, bins = 5) +
     scale_fill_viridis_c()
+
+# Criando um heatmap -----------------------------------------------------------------------------------------------------------------------
+
+## Similarmente ao gráfico de contorno, você pode facilmente mostrar as contagens ou densidades
+## de pontos os 'binned' em um grid hexagonal com geom_hex().
+
+ggplot(chic, aes(temp, o3)) +
+  geom_hex() +
+  scale_fill_distiller(palette = "YlOrRd", direction = 1) +
+  labs(x = "Temperature (°F)", y = "Ozone Level")
+
+## Muitas vezes, surgem linhas brancas na trama resultante. É possível corrigir isso cartografando 
+## também a mesma cor em color para count. (o padrão) ou ..densidade...
+
+ggplot(chic, aes(temp, o3)) +
+  geom_hex(aes(color = ..count..)) +
+  scale_fill_distiller(palette = "YlOrRd", direction = 1) +
+  scale_color_distiller(palette = "YlOrRd", direction = 1) +
+  labs(x = "Temperature (°F)", y = "Ozone Level")
+
+## Ou estabelecer uma cor diferente como outline para todas as células hexagonais.
+
+ggplot(chic, aes(temp, o3)) +
+  geom_hex(color = "grey") +
+  scale_fill_distiller(palette = "YlOrRd", direction = 1) +
+  labs(x = "Temperature (°F)", y = "Ozone Level")
+
+## Você pode mudar o padrão do bin ou diminuir o número de células hexagonais.
+
+ggplot(chic, aes(temp, o3, fill = ..density..)) +
+  geom_hex(bins = 50, color = "grey") +
+  scale_fill_distiller(palette = "YlOrRd", direction = 1) +
+  labs(x = "Temperature (°F)", y = "Ozone Level")
+
+## Se você quiser um grid regular, você pode usar o geom_bin2d() que resume os dados
+## em um grid de células retangulares baseadas em bins.
+
+ggplot(chic, aes(temp, o3, fill = ..density..)) +
+  geom_bin2d(bins = 15, color = "grey") +
+  scale_fill_distiller(palette = "YlOrRd", direction = 1) +
+  labs(x = "Temperature (°F)", y = "Ozone Level")
