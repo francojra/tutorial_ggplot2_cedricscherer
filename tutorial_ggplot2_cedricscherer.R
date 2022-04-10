@@ -2204,7 +2204,6 @@ ggplot(chic, aes(x = date, y = o3run)) +
 
 # Trabalahndo com Smoothings ---------------------------------------------------------------------------------------------------------------
 
-
 # Padrão: adicionando loess ou gam smoothing -----------------------------------------------------------------------------------------------
 
 ## Você pode apenas utilizar stat_smooth() sem a necessidade de adicionar uma fórmular.
