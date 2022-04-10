@@ -2170,3 +2170,34 @@ ggplot(chic, aes(x = temp, y = factor(year), fill = year)) +
                       draw_baseline = FALSE, show.legend = FALSE) +
   theme_minimal() +
   labs(x = "Temperature (°F)", y = "Season")
+
+# Trabalhando com Ribbons (AUC, CI, etc.) --------------------------------------------------------------------------------------------------
+
+## Esse conjunto de dados não é o melhor para demonstrar isso, mas usar ribbon pode ser útil.
+## Nesse exemplo, nós iremos criar uma média de 30 dias usando a função filter(), então o ribbon
+## ficará com menos ruído.
+
+chic$o3run <- as.numeric(stats::filter(chic$o3, rep(1/30, 30), sides = 2))
+
+ggplot(chic, aes(x = date, y = o3run)) +
+   geom_line(color = "chocolate", lwd = .8) +
+   labs(x = "Year", y = "Ozone")
+
+## Veja como fica em caso de preenchermos a área abaixo da curva usando a função geom_ribbon:
+
+ggplot(chic, aes(x = date, y = o3run)) +
+   geom_ribbon(aes(ymin = 0, ymax = o3run),
+               fill = "orange", alpha = .4) +
+   geom_line(color = "chocolate", lwd = .8) +
+   labs(x = "Year", y = "Ozone")
+
+## Nós podemos desenhar um Ribbon que nos dá o desvio padrão acima e abaixo dos nossos dados:
+
+chic$mino3 <- chic$o3run - sd(chic$o3run, na.rm = TRUE)
+chic$maxo3 <- chic$o3run + sd(chic$o3run, na.rm = TRUE)
+
+ggplot(chic, aes(x = date, y = o3run)) +
+   geom_ribbon(aes(ymin = mino3, ymax = maxo3), alpha = .5,
+               fill = "darkseagreen3", color = "transparent") +
+   geom_line(color = "aquamarine4", lwd = .7) +
+   labs(x = "Year", y = "Ozone")
