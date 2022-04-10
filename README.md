@@ -100,3 +100,9 @@
 86. Criando uma representação 'Rug' para um gráfico;
 87. Criando uma matriz de correlação;
 88. Criando um gráfico de contorno;
+89. Criando um heatmap;
+90. Criando um gráfico Ridge;
+91. Trabalhando com Ribbons (AUC, CI, etc.);
+92. Trabalhando com Ribbons (AUC, CI, etc.);
+93. Padrão: adicionando loess ou gam smoothing;
+94. Adicionando um ajuste linear;
