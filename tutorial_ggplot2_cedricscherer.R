@@ -2037,3 +2037,40 @@ ggplot(chic, aes(temp, o3)) +
   geom_density_2d_filled(show.legend = FALSE) +
   coord_cartesian(expand = FALSE) +
   labs(x = "Temperature (°F)", x = "Ozone Level")
+
+## Agora vamos plotar dados com três dimensões.  Vamos traçar os limiares no ponto de condensação 
+## (ou seja, a temperatura em que o vapor de água se condensará para formar
+## orvalho líquido) relacionados com a temperatura e os níveis de ozono:
+
+## interpolate data
+# install.packages("akima")
+library(akima)
+fld <- with(chic, interp(x = temp, y = o3, z = dewpoint))
+fld
+
+## prepare data in long format
+library(reshape2)
+df <- melt(fld$z, na.rm = TRUE)
+names(df) <- c("x", "y", "Dewpoint")
+df
+
+g <- ggplot(data = df, aes(x = x, y = y, z = Dewpoint))  +
+  labs(x = "Temperature (°F)", y = "Ozone Level",
+       color = "Dewpoint")
+
+g + stat_contour(aes(color = ..level.., fill = Dewpoint))
+
+## As linhas indicam diferentes níveis de pontos de condensação, mas este não é um enredo bonito 
+## e também difícil de ler devido à falta de fronteiras. Vamos tentar uma trama de azulejos 
+## usando a paleta de cores de viridis para codificar o ponto de condensação de cada combinação 
+## de nível de ozonio e temperatura:
+
+g + geom_tile(aes(fill = Dewpoint)) +
+    scale_fill_viridis_c(option = "inferno")
+
+## Como é que fica se combinarmos um traçado de contorno e um traçado de azulejo para preencher a 
+## área sob as linhas de contorno?
+
+g + geom_tile(aes(fill = Dewpoint)) +
+    stat_contour(color = "white", size = .7, bins = 5) +
+    scale_fill_viridis_c()
