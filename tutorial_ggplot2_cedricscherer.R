@@ -1924,7 +1924,7 @@ g + geom_violin(fill = "gray80", size = 1, alpha = .5) +
     geom_sina(alpha = .25) +
     coord_flip()
 
-# Gráfico 5: combinando gráficos de violino com boxplot ------------------------------------------------------------------------------------
+# Alternativa 5: combinando gráficos de violino com boxplot ------------------------------------------------------------------------------------
 
 ## Para permitir uma estimativa fácil dos quantis, podemos adicionar boxplot dentro dos violinos
 ## para indicar 25%-quartil, mediana e 75%-quartil:
