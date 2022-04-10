@@ -2115,3 +2115,58 @@ ggplot(chic, aes(temp, o3, fill = ..density..)) +
   geom_bin2d(bins = 15, color = "grey") +
   scale_fill_distiller(palette = "YlOrRd", direction = 1) +
   labs(x = "Temperature (°F)", y = "Ozone Level")
+
+# Criando um gráfico Ridge -----------------------------------------------------------------------------------------------------------------
+
+install.packages("ggridges")
+library(ggridges)
+
+ggplot(chic, aes(x = temp, y = factor(year))) +
+   geom_density_ridges(fill = "gray90") +
+   labs(x = "Temperature (°F)", y = "Year") +
+   theme_bw()
+
+## Você pode facilmente especificar a sobreposição e as caudas utilizando os argumentos 
+## rel_min_height e scale, respectivamente. O pacote também vem com um tema próprio, mas
+## você pode definir seu próprio tema. Adicionalmente, nós podemos mudar a cor para cada ano
+## e tornar o gráfico mais apreciável.
+
+ggplot(chic, aes(x = temp, y = factor(year), fill = year)) +
+  geom_density_ridges(alpha = .8, color = "white",
+                      scale = 2.5, rel_min_height = .01) +
+  labs(x = "Temperature (°F)", y = "Year") +
+  guides(fill = FALSE) +
+  theme_ridges()
+
+## Fazendo um gráfico para cada estaçãocom graidente de cores para temperatura e nova construção
+## do tema.
+
+ggplot(chic, aes(x = temp, y = season, fill = ..x..)) +
+  geom_density_ridges_gradient(scale = .9, gradient_lwd = .5,
+                               color = "black") +
+  scale_fill_viridis_c(option = "plasma", name = "") +
+  labs(x = "Temperature (°F)", y = "Season") +
+  theme_ridges(font_family = "Roboto Condensed", grid = FALSE)
+
+## Nós podemos também comparar vários grupos por ridgelines e colorir eles de acordo com os grupos.
+
+ggplot(data = filter(chic, season %in% c("Summer", "Winter")),
+         aes(x = temp, y = year, fill = paste(year, season))) +
+  geom_density_ridges(alpha = .7, rel_min_height = .01,
+                      color = "white", from = -5, to = 95) +
+  scale_fill_cyclical(breaks = c("1997 Summer", "1997 Winter"),
+                      labels = c(`1997 Summer` = "Summer",
+                                 `1997 Winter` = "Winter"),
+                      values = c("tomato", "dodgerblue"),
+                      name = "Season:", guide = "legend") +
+  theme_ridges(grid = FALSE) +
+  labs(x = "Temperature (°F)", y = "Year")
+
+## O pacote ggridges também ajuda a criar histogramas para diferentes grupos usando stat = "binline"
+## no comando geom_density_ridges():
+
+ggplot(chic, aes(x = temp, y = factor(year), fill = year)) +
+  geom_density_ridges(stat = "binline", bins = 25, scale = .9,
+                      draw_baseline = FALSE, show.legend = FALSE) +
+  theme_minimal() +
+  labs(x = "Temperature (°F)", y = "Season")
