@@ -2201,3 +2201,19 @@ ggplot(chic, aes(x = date, y = o3run)) +
                fill = "darkseagreen3", color = "transparent") +
    geom_line(color = "aquamarine4", lwd = .7) +
    labs(x = "Year", y = "Ozone")
+
+# Trabalahndo com Smoothings ---------------------------------------------------------------------------------------------------------------
+
+
+# Padrão: adicionando loess ou gam smoothing -----------------------------------------------------------------------------------------------
+
+## Você pode apenas utilizar stat_smooth() sem a necessidade de adicionar uma fórmular.
+## Você pode acrescentar um método Loess (amortecimento da dispersão ponderada localmente)
+## se você tiver menos que 1000 pontos ou um GAM (Modelo Aditivo Generalizado, method = "gam").
+## Como nós temos mais que 1000 pontos, o smoothing padrão será baseado no gam.
+
+ggplot(chic, aes(x = date, y = temp)) +
+  labs(x = "Year", y = "Temperature (°F)") +
+  stat_smooth() +
+  geom_point(color = "gray40", alpha = .5)
+
