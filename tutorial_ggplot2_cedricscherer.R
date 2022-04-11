@@ -2225,3 +2225,42 @@ ggplot(chic, aes(x = temp, y = death)) +
    stat_smooth(method = "lm", se = FALSE,
                color = "firebrick", size = 1.3) +
    geom_point(color = "gray40", alpha = .5)
+
+# Especificando a fórmula para o Smoothing -------------------------------------------------------------------------------------------------
+
+## O ggplot2 permite você especificar o modelo que você quer usar. Talvez você queira usar
+## uma regressão polinomial?
+
+ggplot(chic, aes(x = o3, y = temp)) +
+  labs(x = "Ozone Level", y = "Temperature (°F)") +
+  geom_smooth(
+    method = "lm",
+    formula = y ~ x + I(x^2) + I(x^3) + I(x^4) + I(x^5),
+    color = "black",
+    fill = "firebrick"
+  ) +
+  geom_point(color = "gray40", alpha = .3)
+
+## Existe uma importante diferença entre as camadas geom_smooth() e stat_smooth(), mas aqui
+## realmente não importa qual dessas utilizar.
+
+## Vamos dizer que você queira aumentar a dimensão do GAM (adicionar alguns wiggles ao smooth):
+
+cols <- c("darkorange2", "firebrick", "dodgerblue3")
+
+ggplot(chic, aes(x = date, y = temp)) +
+  geom_point(color = "gray40", alpha = .3) +
+  labs(x = "Year", y = "Temperature (°F)") +
+  stat_smooth(aes(col = "1000"),
+              method = "gam",
+              formula = y ~ s(x, k = 1000),
+              se = FALSE, size = 1.3) +
+  stat_smooth(aes(col = "100"),
+              method = "gam",
+              formula = y ~ s(x, k = 100),
+              se = FALSE, size = 1) +
+  stat_smooth(aes(col = "10"),
+              method = "gam",
+              formula = y ~ s(x, k = 10),
+              se = FALSE, size = .8) +
+  scale_color_manual(name = "k", values = cols)
