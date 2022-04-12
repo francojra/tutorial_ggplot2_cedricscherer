@@ -2264,3 +2264,23 @@ ggplot(chic, aes(x = date, y = temp)) +
               formula = y ~ s(x, k = 10),
               se = FALSE, size = .8) +
   scale_color_manual(name = "k", values = cols)
+
+# Trabalhando com gráficos interativos -----------------------------------------------------------------------------------------------------
+
+## Os pacotes que podem ser usados em combinação com o ggplot2 ou por conta própria
+## para criar visualizações criativas são listados a seguir:
+
+# Combinação de ggplot2 e Shiny ------------------------------------------------------------------------------------------------------------
+
+## Shiny é um pacote do RStudio que faz incríveis e fáceis web aplicativos. Para uma introdução
+## e exemplos, visite o site o Shiny homepage.
+
+## Para ver o potencial desse pacote, você pode verificar os exemplos do Hello Shiny:
+
+library(shiny)
+runExample("01_hello")
+
+## Você também pode usar ggplot2 nos aplicativos do Shiny. Esse exemplo mostra a possibilidade
+## para adicionar algumas experiência interativa:
+
+runExample("04_mpg")
