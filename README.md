@@ -111,4 +111,6 @@
 97. Combinação de ggplot2 e Shiny;
 98. Plot.ly via {plotly} e {ggplot2};
 99. ggiraph e ggplot2;
-100. Highcharts via {highcharter}.
+100. Highcharts via {highcharter};
+101. Echarts via {echarts4r};
+102. Chart.js via {charter}.
