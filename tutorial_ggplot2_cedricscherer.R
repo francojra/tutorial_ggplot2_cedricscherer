@@ -2325,3 +2325,13 @@ g <- ggplot(chic, aes(date, temp)) +
   theme_bw()
 
 girafe(ggobj = g)
+
+# Highcharts via {highcharter} -------------------------------------------------------------------------------------------------------------
+
+## Highcharts é um pacote de software para gráficos interativos, é um outro pacote de visualização
+## escrito em JavaScript puro que tem sido portado para o R. O pacote 'highcharts' torna possível 
+## a sua utilização - mas saiba que o Highcharts só é gratuito em caso de utilização não comercial.
+
+library(highcharter)
+
+hchart(chic, "scatter", hcaes(x = date, y = temp, group = season))
