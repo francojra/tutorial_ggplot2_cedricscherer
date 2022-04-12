@@ -2351,3 +2351,19 @@ chic %>%
   e_visual_map(temp) %>%
   e_y_axis(name = "Temperature (°F)") %>%
   e_legend(FALSE)
+
+# Chart.js via {charter} -------------------------------------------------------------------------------------------------------------------
+
+## charter é um outro pacote desenvolvido por John Coene que capacita o uso de visualização
+## JavaScript na livraria do R. O pacote permite a você construir gráficos interativos com a
+## ajuda do Charts.js framework.
+
+remotes::install_github("JohnCoene/charter")
+library(charter)
+
+chic$date_num <- as.numeric(chic$date)
+## doesn't work with class date
+
+chart(data = chic, caes(date_num, temp)) %>%
+  c_scatter(caes(color = season, group = season)) %>%
+  c_colors(RColorBrewer::brewer.pal(4, name = "Dark2"))
