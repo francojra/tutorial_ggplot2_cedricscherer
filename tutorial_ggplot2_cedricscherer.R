@@ -2307,3 +2307,21 @@ ggplotly(g)
 
 ## No gráfico acima ele mantem as configurações gerais do tema, mas adiciona a legenda novamente.
 
+# ggiraph e ggplot2 ------------------------------------------------------------------------------------------------------------------------
+
+## ggiraph é um pacote que permite criar gráficos dinâmicos acoplados ao ggplot2. Ele também permite 
+## adcionar ferramentas (tooltip), animações e ações de JavaScript para o gráfico. O pacote também
+## permite a seleção de elementos gráficos quando usados com aplicativos Shiny.
+
+library(ggiraph)
+
+g <- ggplot(chic, aes(date, temp)) +
+  geom_line(color = "grey") +
+  geom_point_interactive(
+    aes(color = season, tooltip = season, data_id = season)
+  ) +
+  scale_color_brewer(palette = "Dark2", guide = "none") +
+  labs(x = NULL, y = "Temperature (°F)") +
+  theme_bw()
+
+girafe(ggobj = g)
