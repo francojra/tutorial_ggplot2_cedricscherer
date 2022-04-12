@@ -106,3 +106,9 @@
 92. Trabalhando com Ribbons (AUC, CI, etc.);
 93. Padrão: adicionando loess ou gam smoothing;
 94. Adicionando um ajuste linear;
+95. Especificando a fórmula para o Smoothing;
+96. Trabalhando com gráficos interativos;
+97. Combinação de ggplot2 e Shiny;
+98. Plot.ly via {plotly} e {ggplot2};
+99. ggiraph e ggplot2;
+100. Highcharts via {highcharter}.
