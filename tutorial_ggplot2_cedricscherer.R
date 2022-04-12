@@ -2335,3 +2335,19 @@ girafe(ggobj = g)
 library(highcharter)
 
 hchart(chic, "scatter", hcaes(x = date, y = temp, group = season))
+
+# Echarts via {echarts4r} ------------------------------------------------------------------------------------------------------------------
+
+## Apache ECharts é um pacote livre de visualização gráfica que oferece um caminho fácil de
+## construção intuitiva, interativa e altamente customizável. Mesmo sendo escrito em JavaScript,
+## você pode usar no R com o pacote echarts4r.
+
+# install.packages("echarts4r")
+library(echarts4r)
+
+chic %>%
+  e_charts(date) %>%
+  e_scatter(temp, symbol_size = 7) %>%
+  e_visual_map(temp) %>%
+  e_y_axis(name = "Temperature (°F)") %>%
+  e_legend(FALSE)
