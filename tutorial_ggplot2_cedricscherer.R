@@ -2284,3 +2284,26 @@ runExample("01_hello")
 ## para adicionar algumas experiência interativa:
 
 runExample("04_mpg")
+
+# Plot.ly via {plotly} e {ggplot2} ---------------------------------------------------------------------------------------------------------
+
+## Plot.ly é uma ferramenta para criar online e interativos gráficos, incluindo web aplicativos.
+## O pacote plotly permite criar gráficos interativos diretamente do ggplot2 e o fluxo de trabalho
+## desse pacote é surpreendentemente fácil e pode ser feito dentro do R. Entretanto, algumas 
+## configurações dos seus temas podem ser mudados e necessitar de modificações manualmente depois.
+## Além disso, e infelizmente, não é simples criar facetas ou gráficos de vários painéis 
+## que tenham uma boa escala.
+
+g <- ggplot(chic, aes(date, temp)) +
+  geom_line(color = "grey") +
+  geom_point(aes(color = season)) +
+  scale_color_brewer(palette = "Dark2", guide = "none") +
+  labs(x = NULL, y = "Temperature (°F)") +
+  theme_bw()
+
+library(plotly)
+
+ggplotly(g)
+
+## No gráfico acima ele mantem as configurações gerais do tema, mas adiciona a legenda novamente.
+
